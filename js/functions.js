@@ -1,5 +1,9 @@
 "use strict";
 
+(function(){
+
+
+
 /**
  * TODO:
  * Create a function called 'sayHello' that takes a parameter 'name'.
@@ -35,10 +39,11 @@ console.log(helloMessage);
 let myName = "Joshua";
 sayHello(myName);
 
+console.log(sayHello(myName));
 
 // Don't modify the following line, it generates a random number between 1 and 3
 // and stores it in a variable named random
-var random = Math.floor((Math.random() * 3) + 1);
+let random = Math.floor((Math.random() * 3) + 1);
 
 /**
  * TODO:
@@ -61,6 +66,9 @@ var random = Math.floor((Math.random() * 3) + 1);
 function isTwo(random) {
     return random === 2;
 }
+
+console.log(random);
+console.log(isTwo(random));
 
 /**
  * TODO:
@@ -89,7 +97,7 @@ let totalBill = prompt("What is the total of your bill?");
 
 let tipPercentage = prompt("Your bill is " + totalBill + " dollars. What percentage of the total bill would you like to tip?");
 
-alert("Your tip will calcuate out to " + calculateTip(tipPercentage, totalBill) + " dollars.");
+alert("Your tip will calculate out to " + calculateTip(tipPercentage, totalBill) + " dollars.");
 
 /**
  * TODO:
@@ -105,3 +113,13 @@ alert("Your tip will calcuate out to " + calculateTip(tipPercentage, totalBill) 
  *
  * > applyDiscount(45.99, 0.12) // 40.4712
  */
+
+function applyDiscount(prePrice, discountPercentage) {
+    let discountTotal = prePrice * discountPercentage;
+    return prePrice - discountTotal;
+}
+
+console.log(applyDiscount(100, .2));
+console.log(applyDiscount(45.99, .12));
+
+}())
