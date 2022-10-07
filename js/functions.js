@@ -2,8 +2,6 @@
 
 (function(){
 
-
-
 /**
  * TODO:
  * Create a function called 'sayHello' that takes a parameter 'name'.
@@ -94,7 +92,6 @@ function calculateTip(tipPercentage, totalBill) {
  */
 
 let totalBill = prompt("What is the total of your bill?");
-
 let tipPercentage = prompt("Your bill is " + totalBill + " dollars. What percentage of the total bill would you like to tip?");
 
 alert("Your tip will calculate out to " + calculateTip(tipPercentage, totalBill) + " dollars.");
