@@ -61,10 +61,11 @@ let random = Math.floor((Math.random() * 3) + 1);
  * number)
  */
 
-function isTwo(random) {
-    return random === 2;
+function isTwo(number) {
+    return number === 2;
 }
 
+isTwo(random);
 console.log(random);
 console.log(isTwo(random));
 
@@ -81,10 +82,11 @@ console.log(isTwo(random));
  */
 
 function calculateTip(tipPercentage, totalBill) {
-    return (tipPercentage * totalBill) / 100;
+    return tipPercentage * totalBill;
 }
+// console.log(calculateTip(0.15, 33.42));
 
-/**
+    /**
  * TODO:
  * Use prompt and alert in combination with your calculateTip function to
  * prompt the user for the bill total and a percentage they would like to tip,
@@ -119,4 +121,4 @@ function applyDiscount(prePrice, discountPercentage) {
 console.log(applyDiscount(100, .2));
 console.log(applyDiscount(45.99, .12));
 
-}())
+}());
