@@ -18,15 +18,21 @@
     //     return c.toLowerCase() != c.toUpperCase();
     // }
     function sameCase(a, b){
-        if (a.toLowerCase() == a.toUpperCase() || (b.toLowerCase() == b.toUpperCase())) {
+        if (a.toLowerCase() == a.toUpperCase() || b.toLowerCase() == b.toUpperCase()) {
             return -1;
-        } else if ()
-
+        } else if ((a.toUpperCase() === a) && (b.toUpperCase() === b)) {
+            return 1;
+        } else if ((a.toLowerCase() === a) && (b.toLowerCase() === b)) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     // console.log(sameCase('a', '$'));
     console.log(sameCase("$", 'a'));
     console.log(sameCase("a", 'b'));
+    console.log(sameCase("C", 'b'));
     // console.log(sameCase('d', 'e'));
     // console.log(sameCase('z' , 'a'));
 
