@@ -40,16 +40,16 @@
      */
 
 // function analyzeColor(insertColor){
-//    if (insertColor == "blue") {
-//        alert('The ocean is blue.')
-//    } else if (insertColor == "red") {
-//        alert('Fire trucks are red.')
-//    } else if (insertColor == "orange") {
-//        alert('Orange peels are good for zest.')
-//    } else if (insertColor == "green") {
-//        alert('Green grass is great for lying in.')
+//    if (insertColor === "blue") {
+//        return 'The ocean is blue.'
+//    } else if (insertColor === "red") {
+//        return 'Fire trucks are red.'
+//    } else if (insertColor === "orange") {
+//        return 'Orange peels are good for zest.'
+//    } else if (insertColor === "green") {
+//        return 'Green grass is great for lying in.'
 //    } else {
-//        alert(insertColor + ' sounds cool, but I do not know anything about it.')
+//        return insertColor + ' sounds cool, but I do not know anything about it.';
 //    }
 // }
 //
@@ -79,20 +79,22 @@
 // function analyzeColor1(insertColor1){
 //     switch(insertColor1) {
 //         case 'red':
-//             alert('Fire trucks are red.');
+//             return 'Fire trucks are red.';
 //             break;
 //         case 'blue':
-//             alert('The ocean is blue sometimes.');
+//             return 'The ocean is blue sometimes.';
 //             break;
 //         case 'green':
-//             alert('Green grass is great for lying in.');
+//             return 'Green grass is great for lying in.';
 //             break;
 //         default:
-//             alert(insertColor1 + ' is okay I guess...');
+//             return insertColor1 + ' is okay I guess...';
 //             break;
 // }}
 //
 // console.log(analyzeColor1('red'));
+// console.log(analyzeColor1('green'));
+// console.log(analyzeColor1('brown'));
 
     /**
      * TODO:
@@ -101,8 +103,12 @@
      * function to show it to the user.
      */
 
-// let analyzeColor = prompt('Name a color you can see right now.');
+// let userColor = prompt('Name a color you can see right now.');
 //
+// alert(analyzeColor1(prompt('Name a color you can see right now.')));
+//
+//
+
 // switch(analyzeColor) {
 //     case 'red':
 //         alert('Fire trucks are red.');
@@ -141,25 +147,28 @@
      */
 
 
-    // function calculateTotal(specialNumber, billTotal) {
-    //     if (specialNumber === 0) {
-    //         return billTotal;
-    //     } else if (specialNumber === 1) {
-    //         return billTotal - (billTotal * .1);
-    //     } else if (specialNumber === 2) {
-    //         return billTotal - (billTotal * .25);
-    //     } else if (specialNumber === 3) {
-    //         return billTotal - (billTotal * .35);
-    //     } else if (specialNumber === 4) {
-    //         return billTotal - (billTotal * .5);
-    //     } else if (specialNumber === 5) {
-    //         return 0;
-    //     } else {
-    //         alert('Sorry, there must have been error!')
-    //     }
-    // }
-    //
+    function calculateTotal(specialNumber, billTotal) {
+        if (specialNumber === 0) {
+            return billTotal;
+        } else if (specialNumber === 1) {
+            return billTotal - (billTotal * .1);
+        } else if (specialNumber === 2) {
+            return billTotal - (billTotal * .25);
+        } else if (specialNumber === 3) {
+            return billTotal - (billTotal * .35);
+        } else if (specialNumber === 4) {
+            return billTotal - (billTotal * .5);
+        } else if (specialNumber === 5) {
+            return 0;
+        } else {
+            alert('Sorry, there must have been error!')
+        }
+    }
+
     // console.log(calculateTotal(2, 100));
+    // console.log(calculateTotal(0, 100)); // returns 100
+    // console.log(calculateTotal(4, 100)); // returns 50
+    // console.log(calculateTotal(5, 100)); // returns 0
 
     /**
      * TODO:
@@ -173,10 +182,10 @@
 // Generate a random number between 0 and 6
 let luckyNumber = Math.floor(Math.random() * 6);
 
-// let billTotal = prompt('What was your total bill?');
-// let totalBill = calculateTotal(luckyNumber, billTotal);
-//     alert('Your lucky number was ' + luckyNumber + '!');
-//     alert('Your original price was $' + billTotal + '. Your total bill following the discount is $' + totalBill + '.')
+let billTotal = prompt('What was your total bill?');
+let totalBill = calculateTotal(luckyNumber, billTotal);
+    alert('Your lucky number was ' + luckyNumber + '!');
+    alert('Your original price was $' + billTotal + '. Your total bill following the discount is $' + totalBill + '.')
 
     /**
      * TODO:
@@ -199,7 +208,7 @@ let luckyNumber = Math.floor(Math.random() * 6);
 
     function numberGame() {
         let wannaHelp = confirm("Would you like to enter a number?");
-            if (wannaHelp == 1) {
+            if (wannaHelp) {
                 let numberInput = prompt('Please enter a number:');
                     if (isNaN(parseFloat(numberInput))) {
                         alert('You have entered an incorrect data type. Please enter a number');
