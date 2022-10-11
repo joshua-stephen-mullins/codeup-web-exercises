@@ -201,8 +201,9 @@ let luckyNumber = Math.floor(Math.random() * 6);
         let wannaHelp = confirm("Would you like to enter a number?");
             if (wannaHelp == 1) {
                 let numberInput = prompt('Please enter a number:');
-                    if (Number(numberInput) !== numberInput) {
+                    if (isNaN(parseFloat(numberInput))) {
                         alert('You have entered an incorrect data type. Please enter a number');
+                        return 'You have entered an incorrect data type. Please enter a number'
                     } else if (numberInput % 2 === 0) {
                         alert('Your number is even.');
                         alert('Your number + 100 = ' + (parseFloat(numberInput) + 100));
