@@ -75,13 +75,30 @@
     // console.log(inBetween(1, 10, 5));
     // console.log(inBetween(25, 26, 25));
     // console.log(inBetween(0, 1, .5));
+    //
+    // function inBetween(min, max, num){
+    //     return num > min && num < max;
+    // }
+    //
+    // console.log(inBetween(1, 10, 5));
+    // console.log(inBetween(25, 26, 25));
+    // console.log(inBetween(0, 1, .5));
 
-    function inBetween(min, max, num){
-        return num > min && num < max;
+    // let num = 0;
+    // while (num < 100) {
+    //     num += 5;
+    //     console.log(num);
+    // }
+
+//     let num = 0;
+// do {
+//     num += 5;
+//     console.log(num)
+// } while (num < 100);
+
+    for (let num = 0; num < 100; num += 5) {
+        console.log(num);
     }
 
-    console.log(inBetween(1, 10, 5));
-    console.log(inBetween(25, 26, 25));
-    console.log(inBetween(0, 1, .5));
 
 }());
