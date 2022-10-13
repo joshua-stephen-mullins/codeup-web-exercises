@@ -51,27 +51,37 @@
 
 
 
-function multiplyNumber(inputNumber){
-    if (typeof inputNumber !== 'number') {
-        return 0;
-    } else {
-        return inputNumber * 5;
+// function multiplyNumber(inputNumber){
+//     if (typeof inputNumber !== 'number') {
+//         return 0;
+//     } else {
+//         return inputNumber * 5;
+//     }
+// }
+//
+// console.log(multiplyNumber(2134));
+// console.log(multiplyNumber("doggo"));
+// console.log(multiplyNumber("5"));
+// console.log(multiplyNumber("true"));
+
+    // function inBetween(min, max, num){
+    //     if (num > min && num < max){
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+    //
+    // console.log(inBetween(1, 10, 5));
+    // console.log(inBetween(25, 26, 25));
+    // console.log(inBetween(0, 1, .5));
+
+    function inBetween(min, max, num){
+        return num > min && num < max;
     }
-}
 
-console.log(multiplyNumber(2134));
-console.log(multiplyNumber("doggo"));
-console.log(multiplyNumber("5"));
-console.log(multiplyNumber("true"));
-}())
+    console.log(inBetween(1, 10, 5));
+    console.log(inBetween(25, 26, 25));
+    console.log(inBetween(0, 1, .5));
 
-
-
-
-
-
-
-
-
-
-
+}());
