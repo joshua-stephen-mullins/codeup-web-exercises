@@ -31,30 +31,18 @@
 //
 // userNumber();
 
-    function enterNumber(){
-        let userInput = prompt('Please enter odd number between 1 and 50.')
-        return userInput;
-    }
-
-    function skipOdd(){
-        for (let i = 0; i < 10; i++) {
-            let userNum = enterNumber();
-            if (userNum !== (userNum > 0 && userNum < 51 && userNum % 2 !== 0)) {
-                console.log(randoNumOutput + " is even.");
-            } else {
-                console.log(randoNumOutput + " is odd.");
-                break;
-            }
-        }
-
-enterNumber();
-// skipOdd();
-
-
-
-    }
-
-
-
+    // function enterNumber(){
+    //     let userInput = prompt('Please enter odd number between 1 and 50.')
+    //     return userInput;
+    // }
+//
+//     function oddUser(){
+//         let userNum;
+//         while (userNum !== (userNum > 0 && userNum < 51 && userNum % 2 !== 0)) {
+//             userNum = prompt('Please enter odd number between 1 and 50.')
+//         }
+//     }
+//
+// oddUser();
 
 }());
