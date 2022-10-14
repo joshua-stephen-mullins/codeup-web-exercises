@@ -45,4 +45,31 @@
 //
 // oddUser();
 
+// let userNumber = "";
+//
+// while (userNumber !== (userNumber > 0 && userNumber < 51 && userNumber % 2 !== 0)) {
+//     userNumber = prompt("Please enter an odd number between 1 and 50.");
+//         if (userNumber > 0 && userNumber < 51 && userNumber % 2 !== 0)) {
+//             console.log("Number to skip is: " + userNumber);
+//         }
+// }
+
+    let userNumber = "";
+    for (let i = 1; i < 50; i++) {
+        if (userNumber > 0 && userNumber < 51 && userNumber % 2 !== 0){
+            console.log("Number to skip is: " + userNumber);
+            break;
+        } else {
+            userNumber = prompt("Please enter an odd number between 1 and 50.")
+        }
+    }
+    for (let i = 1; i < 50; i+=2) {
+        if (i == userNumber){
+            console.log("Yikes! Skipping number: " + userNumber);
+            continue;
+        } else
+            console.log("Here is an odd number: " + i);
+    }
+
+
 }());
