@@ -8,7 +8,7 @@
      */
 
     let names = ['Joshua', 'Kaylee', 'Brad', 'Ashleigh'];
-
+    console.log(names);
     /**
      * TODO:
      * Create a log statement that will log the number of elements in the names
