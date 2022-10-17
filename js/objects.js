@@ -148,32 +148,39 @@ shoppers.forEach(function(shopper){
      *   `showBookInfo` function.
      */
 
-function createBook(bookTitle, authorName){
+
+function CreateBook(bookTitle, authorName){
     let book = {};
         book.title = bookTitle;
         book.author = authorName;
+        books.push(book);
 }
 
-    createBook("Fight Club", "Chuck Palahniuk");
-    console.log(book);
+    let books = [];
 
-    let books = [
-        createBook("Lord of the Rings", "J. R. R. Tolkien"),
-        createBook("Ender's Game", "Orson Scott Card"),
-        createBook("Name of the Wind", "Patrick Rothfuss"),
-        createBook("The Way of Kings", "Brandon Sanderson"),
-        createBook("Eye of the World", "Robert Jordon"),
-    ]
+    CreateBook("Dictionary", "Marian Webster");
+    CreateBook("Lord of the Rings", "J. R. R. Tolkien");
+    CreateBook("Ender's Game", "Orson Scott Card");
+    CreateBook("Name of the Wind", "Patrick Rothfuss");
+    CreateBook("The Way of Kings", "Brandon Sanderson");
+    CreateBook("Eye of the World", "Robert Jordon");
 
-    console.log(books);
+    // console.log(books);
 
-function showBookInfo(book){
+
+
+function showBookInfo(book) {
     console.log("Book #" + (books.indexOf(book) + 1));
     console.log("Title: " + book.title);
     console.log("Author: " + book.author);
     console.log("---")
 }
 
-showBookInfo(books[0]);
+// showBookInfo(books[0]);
+// showBookInfo([0])
+for (let i = 0; i < books.length; i++){
+    showBookInfo(books[i]);
+}
+
 
 })();
