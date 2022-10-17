@@ -77,40 +77,40 @@ shoppers.forEach(function(shopper){
      * > console.log(books[0].author.lastName) // "Adams"
      */
 
-    let books = [
-        {title: "Lord of the Rings", author: {
-            firstName: "J. R. R.",
-            lastName: "Tolkien",
-            }
-        },
-        {title: "Ender's Game", author: {
-            firstName: "Orson",
-            lastName: "Card",
-            }
-        },
-        {title: "Name of the Wind", author: {
-            firstName: "Patrick",
-            lastName: "Rothfuss",
-            }
-        },
-        {title: "The Way of Kings", author: {
-            firstName: "Brandon",
-            lastName: "Sanderson",
-            }
-        },
-        {title: "Eye of the World", author: {
-            firstName: "Robert",
-            lastName: "Jordan",
-            }
-        },
-    ]
+    // let books = [
+    //     {title: "Lord of the Rings", author: {
+    //         firstName: "J. R. R.",
+    //         lastName: "Tolkien",
+    //         }
+    //     },
+    //     {title: "Ender's Game", author: {
+    //         firstName: "Orson",
+    //         lastName: "Card",
+    //         }
+    //     },
+    //     {title: "Name of the Wind", author: {
+    //         firstName: "Patrick",
+    //         lastName: "Rothfuss",
+    //         }
+    //     },
+    //     {title: "The Way of Kings", author: {
+    //         firstName: "Brandon",
+    //         lastName: "Sanderson",
+    //         }
+    //     },
+    //     {title: "Eye of the World", author: {
+    //         firstName: "Robert",
+    //         lastName: "Jordan",
+    //         }
+    //     },
+    // ]
 
-books.forEach(function (book){
-    console.log("Book #" + (books.indexOf(book) + 1));
-    console.log("Title: " + book.title);
-    console.log("Author: " + book.author.firstName + " " + book.author.lastName);
-    console.log("---")
-});
+// books.forEach(function (book){
+//     console.log("Book #" + (books.indexOf(book) + 1));
+//     console.log("Title: " + book.title);
+//     console.log("Author: " + book.author.firstName + " " + book.author.lastName);
+//     console.log("---")
+// });
 
     /**
      * TODO:
@@ -148,9 +148,32 @@ books.forEach(function (book){
      *   `showBookInfo` function.
      */
 
-    function createBook(bookTitle, authorFirst, authorLast){
+function createBook(bookTitle, authorName){
+    let book = {};
+        book.title = bookTitle;
+        book.author = authorName;
+}
 
-    }
+    createBook("Fight Club", "Chuck Palahniuk");
+    console.log(book);
 
+    let books = [
+        createBook("Lord of the Rings", "J. R. R. Tolkien"),
+        createBook("Ender's Game", "Orson Scott Card"),
+        createBook("Name of the Wind", "Patrick Rothfuss"),
+        createBook("The Way of Kings", "Brandon Sanderson"),
+        createBook("Eye of the World", "Robert Jordon"),
+    ]
+
+    console.log(books);
+
+function showBookInfo(book){
+    console.log("Book #" + (books.indexOf(book) + 1));
+    console.log("Title: " + book.title);
+    console.log("Author: " + book.author);
+    console.log("---")
+}
+
+showBookInfo(books[0]);
 
 })();
