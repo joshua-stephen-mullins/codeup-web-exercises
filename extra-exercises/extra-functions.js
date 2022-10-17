@@ -95,10 +95,21 @@
 //     num += 5;
 //     console.log(num)
 // } while (num < 100);
+//
+//     for (let num = 0; num < 100; num += 5) {
+//         console.log(num);
+//     }
 
-    for (let num = 0; num < 100; num += 5) {
-        console.log(num);
+function typePrinter(arr1){
+    let i = 0;
+    while (i < arr1.length){
+        let arrType = typeof arr1[i];
+        console.log(arrType);
+        i++;
     }
+}
+
+typePrinter([true, "Icon", 25, "66", false, 0]);
 
 
 }());
