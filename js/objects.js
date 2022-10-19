@@ -58,9 +58,9 @@ let person = {};
 
 shoppers.forEach(function(shopper){
     if (shopper.amount > 200){
-        console.log(shopper.name + "'s original total was " + shopper.amount + " and is receiving a discount of 12% off! Their new total is " + (shopper.amount - shopper.amount * .12) + ".")
+        console.log(shopper.name + "'s original total was " + shopper.amount + " and is receiving a discount of 12% off! Their new total is $" + ((shopper.amount - shopper.amount * .12).toFixed(2)) + ".")
     } else {
-        console.log(shopper.name + "'s total is " + shopper.amount + " and is receiving no discount.")
+        console.log(shopper.name + "'s total is $" + shopper.amount.toFixed(2) + " and is receiving no discount.")
     }
 })
 
