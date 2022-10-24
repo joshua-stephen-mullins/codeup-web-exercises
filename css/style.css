@@ -17,6 +17,10 @@ html {
     text-decoration: underline;
 }
 
+#top {
+   text-align: center;
+}
+
 h1, h2, h3 {
     color: orange;
     text-decoration: underline;
