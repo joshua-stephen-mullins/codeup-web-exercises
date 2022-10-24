@@ -1,0 +1,45 @@
+body, html {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, Ubuntu, sans-serif;
+    --bg-info:#CDDEFF;
+    --text-info: #4D47A2;
+    --bg-success: #CFF3DA;
+    --text-success: #297D4B;
+    --bg-warning: #FDFBC9;
+    --text-warning: #9C8B33;
+    --bg-error: #FBD3D7;
+    --text-error: #9C8B33;
+}
+
+
+
+.message-info {
+    background-color: var(--bg-info);
+    color: var(--text-info);
+}
+
+.message-success {
+    background-color: var(--bg-success);
+    color: var(--text-success);
+}
+
+.message-warning {
+    background-color: var(--bg-warning);
+    color: var(--text-warning);
+}
+
+.message-error {
+    background-color: var(--bg-error);
+    color: var(--text-error);
+}
+
+body div {
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #D3D3D2;
+}
+
