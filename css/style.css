@@ -1,5 +1,52 @@
+body, html {
+    height: 100%;
+}
+
+html {
+    background-image: url("../img/ocean.jpg");
+    background-position: center;
+    background-color: lightblue;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Tahoma, SansSerif, serif;
+}
 
 .fancy-header {
     color: purple;
     text-decoration: underline;
+}
+
+h1, h2, h3 {
+    color: orange;
+    text-decoration: underline;
+}
+
+.bulletList {
+    list-style-type: "\1F44D"; // thumbs up sign
+}
+
+.table td {
+    padding: 15px;
+    font-size: 25px;
+
+}.table tr {
+    padding: 15px;
+    font-size: 25px;
+}
+
+a:link {
+    color:red;
+}
+
+a:visited {
+    color:black;
+}
+
+a:hover {
+    color:blue;
+}
+
+a:active {
+    color:green;
 }
