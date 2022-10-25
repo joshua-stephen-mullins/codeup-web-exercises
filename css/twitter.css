@@ -58,6 +58,13 @@ a {
     height: 80px;
 }
 
+.profile-items{
+    list-style: none;
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+
 .profile-form{
     float: right;
     line-height: 80px;
@@ -68,24 +75,28 @@ a {
     top: 16em;
 }
 
+.profile-entry{
+    margin: .5em;
+}
+
 .profile-details{
     float: left;
     margin: 0 .5em;
-    width: calc(25% - .5em);
+    width: calc(25% - 1em);
     /*width: calc(100% - .5em);*/
 }
 
 .timeline{
     float: left;
     margin: 0 .5em;
-    width: calc(50% - .5em);
+    width: calc(50% - 1em);
     /*width: calc(100% - .5em);*/
 }
 
 .who-to-follow{
     float: right;
     margin: 0 .5em;
-    width: calc(25% - .5em);
+    width: calc(25% - 1em);
     /*width: calc(100% - .5em);*/
 }
 
@@ -99,6 +110,17 @@ a {
     border-bottom: 1px solid var(--separator-color);
     padding: .5em;
     overflow: auto;
+}
+
+.media-image{
+    width: 50px;
+    margin-top: 1.33em;
+    float: left;
+}
+
+.media-body{
+    width: calc(100% - 50px);
+    float: right;
 }
 
 .btn {
