@@ -42,6 +42,7 @@ h2, h3 {
 section {
     /* enter needed declarations here */
     display: flex;
+    justify-content: space-evenly;
 }
 
 section:nth-of-type(1) {
@@ -81,14 +82,15 @@ section:nth-of-type(1) div:last-child {
 section:nth-of-type(3) {
     /* enter needed declarations here */
     /*background-color: black;*/
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
 }
 
 section:nth-of-type(3) h3 {
     /* enter needed declarations here */
     /*background-color: black;*/
-    /*align-self: self-start;*/
+    /*align-self: center;*/
+    flex-grow: 1;
 }
 
 .orange-circle {
@@ -104,7 +106,7 @@ section:nth-of-type(3) h3 {
     width: 5em;
     background: brown;
     /* enter needed declarations here */
-    justify-content: flex-start;
+    flex-grow: 1;
 }
 
 .large-brown-box:nth-of-type(2) {
@@ -125,6 +127,11 @@ section:nth-of-type(6) {
     background: coral;
     height: 14em;
     /* enter needed declarations here */
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .grey-box {
