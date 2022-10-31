@@ -1,5 +1,4 @@
 * {
-    box-sizing: border-box;
     font-weight: bolder;
 }
 
@@ -9,6 +8,7 @@ body, html {
 
 nav {
     background: #b9b9b9;
+    box-sizing: border-box;
 }
 
 nav ul {
@@ -24,10 +24,7 @@ nav a {
     text-decoration: none;
     color: black;
     display: inline-block;
-}
-
-a:hover {
-    color: blue;
+    padding: 15px;
 }
 
 .logo {
@@ -41,9 +38,11 @@ a:hover {
 
 .link {
     font-family: 'Work Sans', sans-serif;
-    padding: 15px;
 }
 
+a:hover {
+    color: blue;
+}
 
 main {
     content: '';
