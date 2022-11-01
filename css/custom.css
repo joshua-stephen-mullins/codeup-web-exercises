@@ -1,0 +1,12 @@
+.jumbotron {
+    background-image: url("../img/pizza-2.png");
+    height: 346px;
+    background-size: cover;
+    padding: 0;
+}
+
+.welcome-pizza {
+    width: 100%;
+    padding: 0;
+    text-align: center;
+}
