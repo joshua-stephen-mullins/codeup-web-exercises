@@ -1,3 +1,7 @@
+html {
+    font-family: 'Roboto', sans-serif;
+}
+
 .contact-info a {
     color: black;
     text-decoration: none;
