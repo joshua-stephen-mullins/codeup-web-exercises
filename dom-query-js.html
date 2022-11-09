@@ -30,6 +30,7 @@
     pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
     culpa qui officia deserunt mollit anim id est laborum.
 </p>
+<button id="donezo">Finished!</button>
 
 <script>
     (function () {
@@ -87,9 +88,14 @@
         // TODO: Uncomment the next line and get all elements with class name sub-paragraph
         var subParagraphs = document.querySelector(".sub-paragraph");
         console.log(subParagraphs);
+
         // TODO: Change the text in the first sub paragraph to "Mission Accomplished!"
 
-        subParagraphs.innerHTML = "Mission Accomplished!";
+        let changeText = function (){
+            subParagraphs.innerHTML = "Mission Accomplished!";
+        }
+
+        donezo.addEventListener('click', changeText)
 
     })();
 </script>
