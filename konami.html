@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Konami Code</title>
+
+  <style>
+    html {background-image: url("img/contra-wallpaper.jpeg");
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+
+    body {
+      font-family: 'VT323', monospace;
+    }
+
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div style="display: flex; justify-content: flex-end; flex-wrap: wrap; text-align: center">
+  <h1 style="color: white; width: 100%; font-size: 50px; margin: 0">Konami Code</h1>
+  <div style="width: 50%;">
+
+  </div>
+  <div id="outOfLives" style="width: 50%; border: white 10px dashed; background-color: black">
+    <h1 style="color: red; font-size: 100px; text-align: center; display: flex; justify-content: center; background-color: transparent">OUT OF LIVES</h1>
+    <h3 style="color: red; font-size: 50px">SORRY PLAY AGAIN</h3>
+  </div>
+  <div id="newLives" style="width: 50%; border: white 10px dashed; display: none; justify-content: center; flex-direction: column">
+    <h1 style="color: green; font-size: 100px; text-align: center; display: flex; justify-content: center; background-color: transparent; width: 100%">30 FRESH LIVES</h1>
+    <h3 style="color: green; font-size: 50px">CONTINUE PLAYING</h3>
+  </div>
+</div>
+</div>
+
+<div id="manBar" style="display: flex; align-items: flex-end">
+  <img src="img/contra-man.png" id="man1" style="width: 9%; height: 100px; visibility: hidden">
+  <img src="img/contra-man.png" id="man2" style="width: 9%; height: 110px; visibility: hidden">
+  <img src="img/contra-man.png" id="man3" style="width: 9%; height: 120px; visibility: hidden">
+  <img src="img/contra-man.png" id="man4" style="width: 9%; height: 130px; visibility: hidden">
+  <img src="img/contra-man.png" id="man5" style="width: 9%; height: 140px; visibility: hidden">
+  <img src="img/contra-man.png" id="man6" style="width: 9%; height: 150px; visibility: hidden">
+  <img src="img/contra-man.png" id="man7" style="width: 9%; height: 160px; visibility: hidden">
+  <img src="img/contra-man.png" id="man8" style="width: 9%; height: 170px; visibility: hidden">
+  <img src="img/contra-man.png" id="man9" style="width: 9%; height: 180px; visibility: hidden">
+  <img src="img/contra-man.png" id="man10" style="width: 9%; height: 190px; visibility: hidden">
+  <img src="img/contra-man.png" id="man11" style="width: 9%; height: 200px; visibility: hidden">
+</div>
+
+<div id="healthBar" style="display: flex">
+  <div id="healthBar1" style="width: 9%; height: 20px; margin: 5px">
+  </div>
+  <div id="healthBar2" style="width: 9%; height: 20px; margin: 5px">
+  </div>
+  <div id="healthBar3" style="width: 9%; height: 20px; margin: 5px">
+  </div>
+  <div id="healthBar4" style="width: 9%; height: 20px; margin: 5px">
+  </div>
+  <div id="healthBar5" style="width: 9%; height: 20px; margin: 5px">
+  </div>
+  <div id="healthBar6" style="width: 9%; height: 20px; margin: 5px">
+  </div>
+  <div id="healthBar7" style="width: 9%; height: 20px; margin: 5px">
+  </div>
+  <div id="healthBar8" style="width: 9%; height: 20px; margin: 5px">
+  </div>
+  <div id="healthBar9" style="width: 9%; height: 20px; margin: 5px">
+  </div>
+  <div id="healthBar10" style="width: 9%; height: 20px; margin: 5px">
+  </div>
+  <div id="healthBar11" style="width: 9%; height: 20px; margin: 5px">
+  </div>
+</div>
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script>
+  "use strict";
+
+  let userInput = '';
+
+  $(document).keyup(function(event){
+
+    console.log(event.keyCode);
+    userInput += (event.keyCode);
+    console.log(userInput);
+
+
+    if (userInput.indexOf('38') !== -1){
+      $('#healthBar1').css('background-color', 'green');
+      $('#healthBar1').css('border', 'white 10px solid');
+      $('#man1').css('visibility', 'visible');
+    }
+    if (userInput.indexOf('3838') !== -1){
+      $('#healthBar2').css('background-color', 'green');
+      $('#healthBar2').css('border', 'white 10px solid');
+      $('#man2').css('visibility', 'visible');
+      $('#man1').css('visibility', 'hidden');
+    }
+    if (userInput.indexOf('383840') !== -1){
+      $('#healthBar3').css('background-color', 'green');
+      $('#healthBar3').css('border', 'white 10px solid');
+      $('#man3').css('visibility', 'visible');
+      $('#man2').css('visibility', 'hidden');
+    }
+    if (userInput.indexOf('38384040') !== -1){
+      $('#healthBar4').css('background-color', 'green');
+      $('#healthBar4').css('border', 'white 10px solid');
+      $('#man4').css('visibility', 'visible');
+      $('#man3').css('visibility', 'hidden');
+    }
+    if (userInput.indexOf('3838404037') !== -1){
+      $('#healthBar5').css('background-color', 'green');
+      $('#healthBar5').css('border', 'white 10px solid');
+      $('#man5').css('visibility', 'visible');
+      $('#man4').css('visibility', 'hidden');
+    }
+    if (userInput.indexOf('383840403739') !== -1){
+      $('#healthBar6').css('background-color', 'green');
+      $('#healthBar6').css('border', 'white 10px solid');
+      $('#man6').css('visibility', 'visible');
+      $('#man5').css('visibility', 'hidden');
+    }
+    if (userInput.indexOf('38384040373937') !== -1){
+      $('#healthBar7').css('background-color', 'green');
+      $('#healthBar7').css('border', 'white 10px solid');
+      $('#man7').css('visibility', 'visible');
+      $('#man6').css('visibility', 'hidden');
+    }
+    if (userInput.indexOf('3838404037393739') !== -1){
+      $('#healthBar8').css('background-color', 'green');
+      $('#healthBar8').css('border', 'white 10px solid');
+      $('#man8').css('visibility', 'visible');
+      $('#man7').css('visibility', 'hidden');
+    }
+    if (userInput.indexOf('383840403739373966') !== -1){
+      $('#healthBar9').css('background-color', 'green');
+      $('#healthBar9').css('border', 'white 10px solid');
+      $('#man9').css('visibility', 'visible');
+      $('#man8').css('visibility', 'hidden');
+    }
+    if (userInput.indexOf('38384040373937396665') !== -1){
+      $('#healthBar10').css('background-color', 'green');
+      $('#healthBar10').css('border', 'white 10px solid');
+      $('#man10').css('visibility', 'visible');
+      $('#man9').css('visibility', 'hidden');
+    }
+    if (userInput.indexOf('3838404037393739666513') !== -1){
+      $('#healthBar11').css('background-color', 'green');
+      $('#healthBar11').css('border', 'white 10px solid');
+      $('#man11').css('visibility', 'visible');
+      $('#man10').css('visibility', 'hidden');
+    }
+    if (userInput.indexOf('3838404037393739666513') !== -1){
+      console.log('did it');
+      $('#outOfLives').css('display', 'none');
+      $('#newLives').css('display', 'flex');
+    }
+
+  });
+
+
+</script>
+</body>
+</html>
