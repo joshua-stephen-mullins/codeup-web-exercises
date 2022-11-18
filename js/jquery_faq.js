@@ -29,12 +29,12 @@ $(document).ready(function(){
     })
 
     $('.evergladesItem').click(function(){
-        $('#evergladesList').children().first().css('background-color', 'blue');
+        $('#evergladesList').children().first().css('color', 'blue');
     })
     $('.zionItem').click(function(){
-        $('#zionList').children().first().css('background-color', 'blue');
+        $('#zionList').children().first().css('color', 'blue');
     })
     $('.bigBendItem').click(function(){
-        $('#bigBendList').children().first().css('background-color', 'blue');
+        $('#bigBendList').children().first().css('color', 'blue');
     })
 });
