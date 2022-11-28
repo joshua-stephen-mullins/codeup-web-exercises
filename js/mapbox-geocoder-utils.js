@@ -42,10 +42,9 @@ function createMarkers(){
             .setLngLat(restaurant.location)
             .addTo(map);
 
-        restaurant.popup =new mapboxgl.Popup()
+        restaurant.popup = new mapboxgl.Popup()
             .setHTML("<h5>" + restaurant.name + "</h5><p>" + restaurant.foodType + "</p><p>" + restaurant.price + " food!</p>")
             .setLngLat(restaurant.location)
-            // .addTo(map);
 
         restaurant.marker.setPopup(restaurant.popup);
     })
