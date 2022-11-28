@@ -1,42 +1,76 @@
 'use strict';
 
 $(document).ready(function () {
-
     let currentWeather = {};
     let weatherForecast = {};
-
 
     mapboxgl.accessToken = MAPBOX_TOKEN;
     let map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v9',
         zoom: 10,
-        center: [-86.63486, 30.44811]
+        // center: [-86.63486, 30.44811]
     });
 
-    $.get("http://api.openweathermap.org/data/2.5/weather", {
-        APPID: OPEN_WEATHER_APPID,
-        q:     "San Antonio, US",
-        units: "imperial"
-    }).done(function(data) {
-        console.log('Current Weather');
-        console.log(data);
-        currentWeather = data;
-        $('#currentLocation').html(currentWeather.name);
-        $('#currentTemp').html(Math.round(currentWeather.main.temp));
-        $('#currentConditions').html(currentWeather.weather[0].description);
-        $('#feelsLikeTemp').html(Math.round(currentWeather.main.feels_like));
-        $('#currentLowTemp').html(Math.round(currentWeather.main.temp_min));
-        $('#currentHighTemp').html(Math.round(currentWeather.main.temp_max));
-        $('#currentHumidity').html(Math.round(currentWeather.main.humidity));
-        $('#currentWindSpeed').html(Math.round(currentWeather.wind.speed));
-        $('#currentWeatherIcon').html('<img src="http://openweathermap.org/img/w/' + currentWeather.weather[0].icon + '.png" id="currentWeatherIconImg">')
+    function loadMapCurrent() {
+        const lngLat = marker.getLngLat();
+        $.get("http://api.openweathermap.org/data/2.5/weather", {
+            APPID: OPEN_WEATHER_APPID,
+            lat: lngLat.lat,
+            lon: lngLat.lng,
+            units: "imperial"
+        }).done(function (data) {
+            console.log('Current Weather');
+            console.log(data);
+            currentWeather = data;
+            $('#currentLocation').html(currentWeather.name);
+            $('#currentTemp').html(Math.round(currentWeather.main.temp));
+            $('#currentConditions').html(currentWeather.weather[0].description);
+            $('#feelsLikeTemp').html(Math.round(currentWeather.main.feels_like));
+            $('#currentLowTemp').html(Math.round(currentWeather.main.temp_min));
+            $('#currentHighTemp').html(Math.round(currentWeather.main.temp_max));
+            $('#currentHumidity').html(Math.round(currentWeather.main.humidity));
+            $('#currentPressure').html(Math.round(currentWeather.main.pressure));
+            $('#currentWindSpeed').html(Math.round(currentWeather.wind.speed));
+            $('#currentWeatherIcon').html('<img src="http://openweathermap.org/img/w/' + currentWeather.weather[0].icon + '.png" id="currentWeatherIconImg" alt="Weather Icon">')
+        });
+    }
+
+    function searchBox (searchTerm) {
+        geocode(searchTerm, MAPBOX_TOKEN).then(function (result) {
+            console.log(result);
+            map.setCenter(result);
+            map.setZoom(7);
+            marker.setLngLat(result).addTo(map);
+            loadMapCurrent();
+        });
+    }
+    searchBox("Merritt Island");
+
+    $('#searchBox').click(function(e){
+        e.preventDefault();
+        searchBox($('#searchBoxInput').val())
+    })
 
 
-
-
-
+    let marker = new mapboxgl.Marker({
+        draggable: true
     });
+    function add_marker (event) {
+        let coordinates = event.lngLat;
+        console.log('Lng:', coordinates.lng, 'Lat:', coordinates.lat);
+        marker.setLngLat(coordinates).addTo(map);
+        loadMapCurrent();
+    }
+    map.on('click', add_marker);
+    marker.on('dragend', loadMapCurrent);
+
+
+
+
+
+
+
     $.get("http://api.openweathermap.org/data/2.5/forecast", {
         APPID: OPEN_WEATHER_APPID,
         q:     "San Antonio, US",
@@ -44,10 +78,42 @@ $(document).ready(function () {
     }).done(function(data) {
         console.log('Forecasted Weather');
         console.log(data);
+        weatherForecast = data;
+
+
+        let timeBrackets = [];
+        let dayTemps = [];
+        for (let i = 0; i < weatherForecast.list.length; i++){
+            timeBrackets.push(weatherForecast.list[i].dt_txt);
+            dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
+        }
+
+
+
+        const ctx = document.getElementById("chart1").getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: timeBrackets,
+                datasets: [{
+                    label: 'Temperature',
+                    backgroundColor: 'rgba(161, 198, 247, 1)',
+                    borderColor: 'rgb(47, 128, 237)',
+                    data: dayTemps,
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: false,
+                        }
+                    }]
+                }
+            },
+        });
+
     });
-
-
-
 
 
 
