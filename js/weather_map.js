@@ -39,7 +39,7 @@ $(document).ready(function () {
         geocode(searchTerm, MAPBOX_TOKEN).then(function (result) {
             console.log(result);
             map.setCenter(result);
-            map.setZoom(7);
+            map.setZoom(3);
             marker.setLngLat(result).addTo(map);
             loadMapCurrent();
             loadMapForecast();
@@ -86,12 +86,41 @@ $(document).ready(function () {
 
             let timeBrackets = [];
             let dayTemps = [];
-            for (let i = 0; i < weatherForecast.list.length; i++) {
+            for (let i = 0; i < 9; i++) {
                 timeBrackets.push(weatherForecast.list[i].dt_txt);
                 dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
             }
-
-
+            createChart("chart1", timeBrackets, dayTemps);
+            timeBrackets = [];
+            dayTemps = [];
+            for (let i = 8; i < 17; i++) {
+                timeBrackets.push(weatherForecast.list[i].dt_txt);
+                dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
+            }
+            $('#day1Header').html(timeBrackets[0])
+            createChart("chart2", timeBrackets, dayTemps);
+            timeBrackets = [];
+            dayTemps = [];
+            for (let i = 16; i < 25; i++) {
+                timeBrackets.push(weatherForecast.list[i].dt_txt);
+                dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
+            }
+            createChart("chart3", timeBrackets, dayTemps);
+            timeBrackets = [];
+            dayTemps = [];
+            console.log(weatherForecast)
+            for (let i = 24; i < 33; i++) {
+                timeBrackets.push(weatherForecast.list[i].dt_txt);
+                dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
+            }
+            createChart("chart4", timeBrackets, dayTemps);
+            timeBrackets = [];
+            dayTemps = [];
+            for (let i = 32; i < 40; i++) {
+                timeBrackets.push(weatherForecast.list[i].dt_txt);
+                dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
+            }
+            createChart("chart5", timeBrackets, dayTemps);
         });
     }
 
@@ -112,7 +141,7 @@ $(document).ready(function () {
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero: false,
+                            beginAtZero: true,
                         }
                     }]
                 }
