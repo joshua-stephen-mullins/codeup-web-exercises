@@ -9,7 +9,6 @@ $(document).ready(function () {
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v9',
         zoom: 10,
-        // center: [-86.63486, 30.44811]
     });
 
     function loadMapCurrent() {
@@ -36,18 +35,20 @@ $(document).ready(function () {
         });
     }
 
-    function searchBox (searchTerm) {
+    function searchBox(searchTerm) {
         geocode(searchTerm, MAPBOX_TOKEN).then(function (result) {
             console.log(result);
             map.setCenter(result);
             map.setZoom(7);
             marker.setLngLat(result).addTo(map);
             loadMapCurrent();
+            loadMapForecast();
         });
     }
+
     searchBox("Merritt Island");
 
-    $('#searchBox').click(function(e){
+    $('#searchBox').click(function (e) {
         e.preventDefault();
         searchBox($('#searchBoxInput').val())
     })
@@ -56,41 +57,46 @@ $(document).ready(function () {
     let marker = new mapboxgl.Marker({
         draggable: true
     });
-    function add_marker (event) {
+
+    function add_marker(event) {
         let coordinates = event.lngLat;
         console.log('Lng:', coordinates.lng, 'Lat:', coordinates.lat);
         marker.setLngLat(coordinates).addTo(map);
         loadMapCurrent();
+        loadMapForecast()
     }
+
     map.on('click', add_marker);
     marker.on('dragend', loadMapCurrent);
+    marker.on('dragend', loadMapForecast);
 
 
+    function loadMapForecast() {
+        const lngLat = marker.getLngLat();
+        $.get("http://api.openweathermap.org/data/2.5/forecast", {
+            APPID: OPEN_WEATHER_APPID,
+            lat: lngLat.lat,
+            lon: lngLat.lng,
+            units: "imperial"
+        }).done(function (data) {
+            console.log('Forecasted Weather');
+            console.log(data);
+            weatherForecast = data;
 
 
+            let timeBrackets = [];
+            let dayTemps = [];
+            for (let i = 0; i < weatherForecast.list.length; i++) {
+                timeBrackets.push(weatherForecast.list[i].dt_txt);
+                dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
+            }
 
 
+        });
+    }
 
-    $.get("http://api.openweathermap.org/data/2.5/forecast", {
-        APPID: OPEN_WEATHER_APPID,
-        q:     "San Antonio, US",
-        units: "imperial"
-    }).done(function(data) {
-        console.log('Forecasted Weather');
-        console.log(data);
-        weatherForecast = data;
-
-
-        let timeBrackets = [];
-        let dayTemps = [];
-        for (let i = 0; i < weatherForecast.list.length; i++){
-            timeBrackets.push(weatherForecast.list[i].dt_txt);
-            dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
-        }
-
-
-
-        const ctx = document.getElementById("chart1").getContext('2d');
+    function createChart(divName, timeBrackets, dayTemps) {
+        const ctx = document.getElementById(divName).getContext('2d');
         const myChart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -112,11 +118,5 @@ $(document).ready(function () {
                 }
             },
         });
-
-    });
-
-
-
-
-
+    }
 });
