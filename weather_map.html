@@ -17,7 +17,8 @@
         <div class="container-fluid">
             <a class="navbar-brand"><span id="currentLocation"></span> Weather</a>
             <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="City" aria-label="Search" id="searchBoxInput">
+                <input class="form-control me-2" type="search" placeholder="City" aria-label="Search"
+                       id="searchBoxInput">
                 <button class="btn btn-outline-success" type="submit" id="searchBox">Search</button>
             </form>
         </div>
@@ -51,44 +52,49 @@
     <div class="nav nav-tabs d-flex" id="nav-tab" role="tablist">
         <button class="nav-link active flex-fill" id="day1-tab" data-bs-toggle="tab" data-bs-target="#day1"
                 type="button" role="tab" aria-controls="nav-home" aria-selected="true"><span id="day1Header"></span>
+            <p>Low: <span id="day1Low"></span><sup>°F</sup> High: <span id="day1High"></span><sup>°F</sup></p>
         </button>
         <button class="nav-link flex-fill" id="day2-tab" data-bs-toggle="tab" data-bs-target="#day2" type="button"
                 role="tab" aria-controls="nav-profile" aria-selected="false"><span id="day2Header"></span>
+            <p>Low: <span id="day2Low"></span><sup>°F</sup> High: <span id="day2High"></span><sup>°F</sup></p>
         </button>
         <button class="nav-link flex-fill" id="day3-tab" data-bs-toggle="tab" data-bs-target="#day3" type="button"
                 role="tab" aria-controls="nav-contact" aria-selected="false"><span id="day3Header"></span>
+            <p>Low: <span id="day3Low"></span><sup>°F</sup> High: <span id="day3High"></span><sup>°F</sup></p>
         </button>
         <button class="nav-link flex-fill" id="day4-tab" data-bs-toggle="tab" data-bs-target="#day4" type="button"
                 role="tab" aria-controls="nav-disabled" aria-selected="false"><span id="day4Header"></span>
+            <p>Low: <span id="day4Low"></span><sup>°F</sup> High: <span id="day4High"></span><sup>°F</sup></p>
         </button>
         <button class="nav-link flex-fill" id="day5-tab" data-bs-toggle="tab" data-bs-target="#day5" type="button"
                 role="tab" aria-controls="nav-disabled" aria-selected="false"><span id="day5Header"></span>
+            <p>Low: <span id="day5Low"></span><sup>°F</sup> High: <span id="day5High"></span><sup>°F</sup></p>
         </button>
     </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane row fade show active" id="day1" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-        <div class="chart-container col-7">
+        <div class="chart-container col-6 m-3">
             <canvas id="chart1"></canvas>
         </div>
     </div>
     <div class="tab-pane fade" id="day2" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-        <div class="chart-container col-7">
+        <div class="chart-container col-6 m-3">
             <canvas id="chart2"></canvas>
         </div>
     </div>
     <div class="tab-pane fade" id="day3" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
-        <div class="chart-container col-7">
+        <div class="chart-container col-6 m-3">
             <canvas id="chart3"></canvas>
         </div>
     </div>
     <div class="tab-pane fade" id="day4" role="tabpanel" aria-labelledby="nav-disabled-tab" tabindex="0">
-        <div class="chart-container col-7">
+        <div class="chart-container col-6 m-3">
             <canvas id="chart4"></canvas>
         </div>
     </div>
     <div class="tab-pane fade" id="day5" role="tabpanel" aria-labelledby="nav-disabled-tab" tabindex="0">
-        <div class="chart-container col-7">
+        <div class="chart-container col-6 m-3">
             <canvas id="chart5"></canvas>
         </div>
     </div>

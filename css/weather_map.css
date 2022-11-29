@@ -8,6 +8,11 @@
     font-size: 5rem;
 }
 
+.nav-tabs button {
+    color: black;
+}
+
+
 /*#currentWeatherIconImg {*/
 /*    width: 10rem;*/
 /*    height: 10rem;*/

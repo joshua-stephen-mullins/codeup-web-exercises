@@ -19,12 +19,11 @@ $(document).ready(function () {
             lon: lngLat.lng,
             units: "imperial"
         }).done(function (data) {
-            console.log('Current Weather');
-            console.log(data);
             currentWeather = data;
+            let currentWeatherDesc = currentWeather.weather[0].description;
             $('#currentLocation').html(currentWeather.name);
             $('#currentTemp').html(Math.round(currentWeather.main.temp));
-            $('#currentConditions').html(currentWeather.weather[0].description);
+            $('#currentConditions').html(capitalize(currentWeatherDesc));
             $('#feelsLikeTemp').html(Math.round(currentWeather.main.feels_like));
             $('#currentLowTemp').html(Math.round(currentWeather.main.temp_min));
             $('#currentHighTemp').html(Math.round(currentWeather.main.temp_max));
@@ -35,9 +34,16 @@ $(document).ready(function () {
         });
     }
 
+    function capitalize(string){
+    let arr = string.split(" ");
+    for (let i = 0; i < arr.length; i++) {
+        arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+    }
+        return arr.join(" ")
+    }
+
     function searchBox(searchTerm) {
         geocode(searchTerm, MAPBOX_TOKEN).then(function (result) {
-            console.log(result);
             map.setCenter(result);
             map.setZoom(3);
             marker.setLngLat(result).addTo(map);
@@ -79,43 +85,8 @@ $(document).ready(function () {
             lon: lngLat.lng,
             units: "imperial"
         }).done(function (data) {
-            console.log('Forecasted Weather');
-            console.log(data);
             weatherForecast = data;
-
-
-            // createChart("chart1", timeBrackets, dayTemps);
-            // timeBrackets = [];
-            // dayTemps = [];
-            // for (let i = 8; i < 17; i++) {
-            //     timeBrackets.push(weatherForecast.list[i].dt_txt);
-            //     dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
-            // }
-            // $('#day1Header').html(timeBrackets[0])
-            // createChart("chart2", timeBrackets, dayTemps);
-            // timeBrackets = [];
-            // dayTemps = [];
-            // for (let i = 16; i < 25; i++) {
-            //     timeBrackets.push(weatherForecast.list[i].dt_txt);
-            //     dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
-            // }
-            // createChart("chart3", timeBrackets, dayTemps);
-            // timeBrackets = [];
-            // dayTemps = [];
-            // for (let i = 24; i < 33; i++) {
-            //     timeBrackets.push(weatherForecast.list[i].dt_txt);
-            //     dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
-            // }
-            // createChart("chart4", timeBrackets, dayTemps);
-            // timeBrackets = [];
-            // dayTemps = [];
-            // for (let i = 32; i < 40; i++) {
-            //     timeBrackets.push(weatherForecast.list[i].dt_txt);
-            //     dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
-            // }
-            // createChart("chart5", timeBrackets, dayTemps);
-
-
+            console.log(weatherForecast)
             let chart1 = {}
             chart1.dateTime = [];
             chart1.temps = [];
@@ -132,25 +103,14 @@ $(document).ready(function () {
             chart5.dateTime = [];
             chart5.temps = [];
 
-            console.log(chart1.dateTime)
-            console.log(chart2.dateTime)
-            console.log(chart3.dateTime)
-            console.log(chart4.dateTime)
-            console.log(chart5.dateTime)
-
             function addDays(date, days) {
                 let result = new Date(date);
                 result.setDate(result.getDate() + days);
                 return result;
             }
 
-
             let currentTime = new Date(currentWeather.dt * 1000);
             let currentDate = currentTime.toLocaleDateString();
-
-
-            console.log(addDays(currentTime, 2).toLocaleDateString())
-
 
             weatherForecast.list.forEach(function (forecastData) {
                 let forecastDataDate = new Date(forecastData.dt * 1000);
@@ -159,7 +119,7 @@ $(document).ready(function () {
                 if (currentDate === forecastDataDateOnly) {
                     chart1.dateTime.push(forecastDataTime);
                     chart1.temps.push(forecastData.main.temp)
-                    $('#day1Header').html(currentDate)
+                    $('#day1Header').html('Today')
                 } else if (forecastDataDateOnly === (addDays(currentTime, 1).toLocaleDateString())) {
                     chart2.dateTime.push(forecastDataTime);
                     chart2.temps.push(forecastData.main.temp)
@@ -195,10 +155,25 @@ $(document).ready(function () {
                 }
             })
             createChart("chart1", chart1.dateTime, chart1.temps);
+            let chart1Sorted = chart1.temps.sort(function(a, b){return a - b});
+            $('#day1Low').html(Math.round(chart1Sorted[0]));
+            $('#day1High').html(Math.round(chart1Sorted.reverse()[0]));
             createChart("chart2", chart2.dateTime, chart2.temps);
+            let chart2Sorted = chart2.temps.sort(function(a, b){return a - b});
+            $('#day2Low').html(Math.round(chart2Sorted[0]));
+            $('#day2High').html(Math.round(chart2Sorted.reverse()[0]));
             createChart("chart3", chart3.dateTime, chart3.temps);
+            let chart3Sorted = chart3.temps.sort(function(a, b){return a - b});
+            $('#day3Low').html(Math.round(chart3Sorted[0]));
+            $('#day3High').html(Math.round(chart3Sorted.reverse()[0]));
             createChart("chart4", chart4.dateTime, chart4.temps);
+            let chart4Sorted = chart4.temps.sort(function(a, b){return a - b});
+            $('#day4Low').html(Math.round(chart4Sorted[0]));
+            $('#day4High').html(Math.round(chart4Sorted.reverse()[0]));
             createChart("chart5", chart5.dateTime, chart5.temps);
+            let chart5Sorted = chart5.temps.sort(function(a, b){return a - b});
+            $('#day5Low').html(Math.round(chart5Sorted[0]));
+            $('#day5High').html(Math.round(chart5Sorted.reverse()[0]));
         });
     }
 
