@@ -84,43 +84,100 @@ $(document).ready(function () {
             weatherForecast = data;
 
 
-            let timeBrackets = [];
-            let dayTemps = [];
-            for (let i = 0; i < 9; i++) {
-                timeBrackets.push(weatherForecast.list[i].dt_txt);
-                dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
+            // createChart("chart1", timeBrackets, dayTemps);
+            // timeBrackets = [];
+            // dayTemps = [];
+            // for (let i = 8; i < 17; i++) {
+            //     timeBrackets.push(weatherForecast.list[i].dt_txt);
+            //     dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
+            // }
+            // $('#day1Header').html(timeBrackets[0])
+            // createChart("chart2", timeBrackets, dayTemps);
+            // timeBrackets = [];
+            // dayTemps = [];
+            // for (let i = 16; i < 25; i++) {
+            //     timeBrackets.push(weatherForecast.list[i].dt_txt);
+            //     dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
+            // }
+            // createChart("chart3", timeBrackets, dayTemps);
+            // timeBrackets = [];
+            // dayTemps = [];
+            // for (let i = 24; i < 33; i++) {
+            //     timeBrackets.push(weatherForecast.list[i].dt_txt);
+            //     dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
+            // }
+            // createChart("chart4", timeBrackets, dayTemps);
+            // timeBrackets = [];
+            // dayTemps = [];
+            // for (let i = 32; i < 40; i++) {
+            //     timeBrackets.push(weatherForecast.list[i].dt_txt);
+            //     dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
+            // }
+            // createChart("chart5", timeBrackets, dayTemps);
+
+
+            let chart1 = {}
+            chart1.dateTime = [];
+            chart1.temps = [];
+            let chart2 = {}
+            chart2.dateTime = [];
+            chart2.temps = [];
+            let chart3 = {}
+            chart3.dateTime = [];
+            chart3.temps = [];
+            let chart4 = {}
+            chart4.dateTime = [];
+            chart4.temps = [];
+            let chart5 = {}
+            chart5.dateTime = [];
+            chart5.temps = [];
+
+
+            function addDays(date, days) {
+                let result = new Date(date);
+                result.setDate(result.getDate() + days);
+                return result;
             }
-            createChart("chart1", timeBrackets, dayTemps);
-            timeBrackets = [];
-            dayTemps = [];
-            for (let i = 8; i < 17; i++) {
-                timeBrackets.push(weatherForecast.list[i].dt_txt);
-                dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
-            }
-            $('#day1Header').html(timeBrackets[0])
-            createChart("chart2", timeBrackets, dayTemps);
-            timeBrackets = [];
-            dayTemps = [];
-            for (let i = 16; i < 25; i++) {
-                timeBrackets.push(weatherForecast.list[i].dt_txt);
-                dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
-            }
-            createChart("chart3", timeBrackets, dayTemps);
-            timeBrackets = [];
-            dayTemps = [];
-            console.log(weatherForecast)
-            for (let i = 24; i < 33; i++) {
-                timeBrackets.push(weatherForecast.list[i].dt_txt);
-                dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
-            }
-            createChart("chart4", timeBrackets, dayTemps);
-            timeBrackets = [];
-            dayTemps = [];
-            for (let i = 32; i < 40; i++) {
-                timeBrackets.push(weatherForecast.list[i].dt_txt);
-                dayTemps.push(Math.round(weatherForecast.list[i].main.temp));
-            }
-            createChart("chart5", timeBrackets, dayTemps);
+
+
+            let currentTime = new Date(currentWeather.dt * 1000);
+            let currentDate = currentTime.toLocaleDateString();
+
+
+            console.log(addDays(currentTime, 2).toLocaleDateString())
+
+
+            weatherForecast.list.forEach(function (forecastData) {
+                let forecastDataDate = new Date(forecastData.dt * 1000);
+                let forecastDataDateOnly = forecastDataDate.toLocaleDateString();
+                let forecastDataTime = forecastDataDate.toLocaleTimeString();
+                if (currentDate === forecastDataDateOnly) {
+                    chart1.dateTime.push(forecastDataTime);
+                    chart1.temps.push(forecastData.main.temp)
+                    $('#day1Header').html(currentDate)
+                } else if (forecastDataDateOnly === (addDays(currentTime, 1).toLocaleDateString())) {
+                    chart2.dateTime.push(forecastDataTime);
+                    chart2.temps.push(forecastData.main.temp)
+                    $('#day2Header').html(addDays(currentTime, 1).toLocaleDateString())
+                } else if (forecastDataDateOnly === (addDays(currentTime, 2).toLocaleDateString())) {
+                    chart3.dateTime.push(forecastDataTime);
+                    chart3.temps.push(forecastData.main.temp)
+                    $('#day3Header').html(addDays(currentTime, 2).toLocaleDateString())
+                } else if (forecastDataDateOnly === (addDays(currentTime, 3).toLocaleDateString())) {
+                    chart4.dateTime.push(forecastDataTime);
+                    chart4.temps.push(forecastData.main.temp)
+                    $('#day4Header').html(addDays(currentTime, 3).toLocaleDateString())
+                } else if (forecastDataDateOnly === (addDays(currentTime, 4).toLocaleDateString())) {
+                    chart5.dateTime.push(forecastDataTime);
+                    chart5.temps.push(forecastData.main.temp)
+                    $('#day5Header').html(addDays(currentTime, 4).toLocaleDateString())
+                }
+            })
+            createChart("chart1", chart1.dateTime, chart1.temps);
+            createChart("chart2", chart2.dateTime, chart2.temps);
+            createChart("chart3", chart3.dateTime, chart3.temps);
+            createChart("chart4", chart4.dateTime, chart4.temps);
+            createChart("chart5", chart5.dateTime, chart5.temps);
         });
     }
 
@@ -138,8 +195,10 @@ $(document).ready(function () {
                 }]
             },
             options: {
+                legend: {display: false},
                 scales: {
                     yAxes: [{
+                        // display: false,
                         ticks: {
                             beginAtZero: false,
                         }
