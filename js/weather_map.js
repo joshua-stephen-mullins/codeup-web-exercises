@@ -132,6 +132,11 @@ $(document).ready(function () {
             chart5.dateTime = [];
             chart5.temps = [];
 
+            console.log(chart1.dateTime)
+            console.log(chart2.dateTime)
+            console.log(chart3.dateTime)
+            console.log(chart4.dateTime)
+            console.log(chart5.dateTime)
 
             function addDays(date, days) {
                 let result = new Date(date);
@@ -159,18 +164,34 @@ $(document).ready(function () {
                     chart2.dateTime.push(forecastDataTime);
                     chart2.temps.push(forecastData.main.temp)
                     $('#day2Header').html(addDays(currentTime, 1).toLocaleDateString())
+                    if (forecastDataTime === '12:00:00 AM') {
+                        chart1.dateTime.push(forecastDataTime);
+                        chart1.temps.push(forecastData.main.temp)
+                    }
                 } else if (forecastDataDateOnly === (addDays(currentTime, 2).toLocaleDateString())) {
                     chart3.dateTime.push(forecastDataTime);
                     chart3.temps.push(forecastData.main.temp)
                     $('#day3Header').html(addDays(currentTime, 2).toLocaleDateString())
+                    if (forecastDataTime === '12:00:00 AM') {
+                        chart2.dateTime.push(forecastDataTime);
+                        chart2.temps.push(forecastData.main.temp)
+                    }
                 } else if (forecastDataDateOnly === (addDays(currentTime, 3).toLocaleDateString())) {
                     chart4.dateTime.push(forecastDataTime);
                     chart4.temps.push(forecastData.main.temp)
                     $('#day4Header').html(addDays(currentTime, 3).toLocaleDateString())
+                    if (forecastDataTime === '12:00:00 AM') {
+                        chart3.dateTime.push(forecastDataTime);
+                        chart3.temps.push(forecastData.main.temp)
+                    }
                 } else if (forecastDataDateOnly === (addDays(currentTime, 4).toLocaleDateString())) {
                     chart5.dateTime.push(forecastDataTime);
                     chart5.temps.push(forecastData.main.temp)
                     $('#day5Header').html(addDays(currentTime, 4).toLocaleDateString())
+                    if (forecastDataTime === '12:00:00 AM') {
+                        chart4.dateTime.push(forecastDataTime);
+                        chart4.temps.push(forecastData.main.temp)
+                    }
                 }
             })
             createChart("chart1", chart1.dateTime, chart1.temps);
