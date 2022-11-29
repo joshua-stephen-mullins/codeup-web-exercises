@@ -176,7 +176,6 @@ $(document).ready(function () {
             $('#day5High').html(Math.round(chart5Sorted.reverse()[0]));
         });
     }
-
     function createChart(divName, timeBrackets, dayTemps) {
         const ctx = document.getElementById(divName).getContext('2d');
         const myChart = new Chart(ctx, {
