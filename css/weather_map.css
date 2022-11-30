@@ -12,6 +12,10 @@
     font-size: 3rem;
 }
 
+.font-size-med {
+    font-size: 1.5rem;
+}
+
 .nav-tabs button {
     color: black;
 }

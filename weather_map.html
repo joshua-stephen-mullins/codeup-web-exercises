@@ -29,19 +29,19 @@
         <h5>Current Weather</h5>
         <div class="row m-0 p-0 justify-content-between align-items-center">
             <div class="col-5 p-2">
-                <h1 class="col-5 m-0"><span id="currentTemp"></span><sup>°F</sup></h1>
-                <p>Low: <span id="currentLowTemp"></span><sup>°F</sup> High: <span
-                        id="currentHighTemp"></span><sup>°F</sup></p>
+                <h1 class="col-5 m-0"><span id="currentTemp"></span>°F</h1>
+                <p class="font-size-med">Low: <span class="currentLowTemp"></span>°F | High: <span
+                        class="currentHighTemp"></span>°F</p>
             </div>
             <div class="col-5 p-2">
                 <h2><span class="fs-2" id="currentConditions"></span></h2>
-                <h3>Feels Like: <span id="feelsLikeTemp"></span><sup>°F</sup></h3>
+                <h3>Feels Like: <span id="feelsLikeTemp"></span>°F</h3>
             </div>
         </div>
         <div class="d-flex justify-content-evenly">
-            <p>Humidity: <span id="currentHumidity"></span>%</p>
-            <p>Pressure: <span id="currentPressure"></span></p>
-            <p>Wind: <span id="currentWindSpeed"></span> mph</p>
+            <p class="font-size-med">Humidity: <span id="currentHumidity"></span>%</p>
+            <p class="font-size-med">Pressure: <span id="currentPressure"></span></p>
+            <p class="font-size-med">Wind: <span id="currentWindSpeed"></span> mph</p>
         </div>
     </div>
     <div class="col-5 m-0 mt-3 rounded-4" id="map">
@@ -52,62 +52,120 @@
         <button class="nav-link active flex-fill" id="day1-tab" data-bs-toggle="tab" data-bs-target="#day1"
                 type="button" role="tab" aria-controls="nav-home" aria-selected="true"><span class="fs-4"
                                                                                              id="day1Header"></span>
-            <p>Low: <span id="day1Low"></span><sup>°F</sup> High: <span id="day1High"></span><sup>°F</sup></p>
+            <p>Low: <span class="currentLowTemp"></span>°F | High: <span class="currentHighTemp"></span>°F</p>
         </button>
         <button class="nav-link flex-fill" id="day2-tab" data-bs-toggle="tab" data-bs-target="#day2" type="button"
                 role="tab" aria-controls="nav-profile" aria-selected="false"><span class="fs-4" id="day2Header"></span>
-            <p>Low: <span id="day2Low"></span><sup>°F</sup> High: <span id="day2High"></span><sup>°F</sup></p>
+            <p>Low: <span class="day2Low"></span>°F | High: <span class="day2High"></span>°F</p>
         </button>
         <button class="nav-link flex-fill" id="day3-tab" data-bs-toggle="tab" data-bs-target="#day3" type="button"
                 role="tab" aria-controls="nav-contact" aria-selected="false"><span class="fs-4" id="day3Header"></span>
-            <p>Low: <span id="day3Low"></span><sup>°F</sup> High: <span id="day3High"></span><sup>°F</sup></p>
+            <p>Low: <span class="day3Low"></span>°F | High: <span class="day3High"></span>°F</p>
         </button>
         <button class="nav-link flex-fill" id="day4-tab" data-bs-toggle="tab" data-bs-target="#day4" type="button"
                 role="tab" aria-controls="nav-disabled" aria-selected="false"><span class="fs-4" id="day4Header"></span>
-            <p>Low: <span id="day4Low"></span><sup>°F</sup> High: <span id="day4High"></span><sup>°F</sup></p>
+            <p>Low: <span class="day4Low"></span>°F | High: <span class="day4High"></span>°F</p>
         </button>
         <button class="nav-link flex-fill" id="day5-tab" data-bs-toggle="tab" data-bs-target="#day5" type="button"
                 role="tab" aria-controls="nav-disabled" aria-selected="false"><span class="fs-4" id="day5Header"></span>
-            <p>Low: <span id="day5Low"></span><sup>°F</sup> High: <span id="day5High"></span><sup>°F</sup></p>
+            <p>Low: <span class="day5Low"></span>°F | High: <span class="day5High"></span>°F</p>
         </button>
     </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
     <div class="tab-pane row fade show active" id="day1" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-        <div class="d-flex justify-content-around p-0">
+        <div class="d-flex justify-content-evenly p-0">
             <div class="chart-container col-5 m-3 p-0">
                 <canvas id="chart1"></canvas>
             </div>
-            <div class="col-5 border border-3 rounded-3 m-3">
-                <h3><span>Low: <span id="forecast1-low"></span><sub>°F</sub></span><span class="font-size-big" id="forecast1-description"></span><span>High: <span id="forecast1-high"></span><sub>°F</sub></span></h3>
-
-
+            <div class="row col-5 border border-3 rounded-3 m-3 d-flex align-content-around">
+                <h3 class="text-center"><span class="font-size-big" id="forecast1-description"></span></h3>
+                <div class="d-flex justify-content-evenly col-12">
+                    <h4>Low: <span class="currentLowTemp"></span>°F</h4>
+                    <h4>High: <span class="currentHighTemp"></span>°F</h4>
+                </div>
+                <div class="d-flex justify-content-evenly col-12">
+                    <p class="font-size-med">Humidity: <span id="forecast1-humidity"></span>%</p>
+                    <p class="font-size-med">Pressure: <span id="forecast1-pressure"></span></p>
+                    <p class="font-size-med">Wind: <span id="forecast1-wind"></span>mph</p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="tab-pane row fade show active" id="day2" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-        <div class="d-flex justify-content-around p-0">
+    <div class="tab-pane row fade" id="day2" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+        <div class="d-flex justify-content-evenly p-0">
             <div class="chart-container col-5 m-3 p-0">
                 <canvas id="chart2"></canvas>
             </div>
-            <div class="col-5 border border-3 rounded-3 m-3">
-                <h1><span class="font-size-big" id="forecast2-description"></span></h1>
+            <div class="row col-5 border border-3 rounded-3 m-3 d-flex align-content-around">
+                    <h3 class="text-center"><span class="font-size-big" id="forecast2-description"></span></h3>
+                <div class="d-flex justify-content-evenly col-12">
+                    <h4>Low: <span class="day2Low"></span>°F</h4>
+                    <h4>High: <span class="day2High"></span>°F</h4>
+                </div>
+                <div class="d-flex justify-content-evenly col-12">
+                    <p class="font-size-med">Humidity: <span id="forecast2-humidity"></span>%</p>
+                    <p class="font-size-med">Pressure: <span id="forecast2-pressure"></span></p>
+                    <p class="font-size-med">Wind: <span id="forecast2-wind"></span> mph</p>
+                </div>
             </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="day3" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
-        <div class="chart-container col-6 m-3">
-            <canvas id="chart3"></canvas>
+    <div class="tab-pane row fade" id="day3" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+        <div class="d-flex justify-content-evenly p-0">
+            <div class="chart-container col-5 m-3 p-0">
+                <canvas id="chart3"></canvas>
+            </div>
+            <div class="row col-5 border border-3 rounded-3 m-3 d-flex align-content-around">
+                    <h3 class="text-center"><span class="font-size-big" id="forecast3-description"></span></h3>
+                <div class="d-flex justify-content-evenly col-12">
+                    <h4 class="text-center">Low: <span class="day3Low"></span>°F</h4>
+                    <h4>High: <span class="day3High"></span>°F</h4>
+                </div>
+                <div class="d-flex justify-content-evenly col-12">
+                    <p class="font-size-med">Humidity: <span id="forecast3-humidity"></span>%</p>
+                    <p class="font-size-med">Pressure: <span id="forecast3-pressure"></span></p>
+                    <p class="font-size-med">Wind: <span id="forecast3-wind"></span> mph</p>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="day4" role="tabpanel" aria-labelledby="nav-disabled-tab" tabindex="0">
-        <div class="chart-container col-6 m-3">
-            <canvas id="chart4"></canvas>
+    <div class="tab-pane row fade" id="day4" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+        <div class="d-flex justify-content-evenly p-0">
+            <div class="chart-container col-5 m-3 p-0">
+                <canvas id="chart4"></canvas>
+            </div>
+            <div class="row col-5 border border-3 rounded-3 m-3 d-flex align-content-around">
+                <h3 class="text-center"><span class="font-size-big" id="forecast4-description"></span></h3>
+                <div class="d-flex justify-content-evenly col-12">
+                    <h4 class="text-center">Low: <span class="day4Low"></span>°F</h4>
+                    <h4>High: <span class="day4High"></span>°F</h4>
+                </div>
+                <div class="d-flex justify-content-evenly col-12">
+                    <p class="font-size-med">Humidity: <span id="forecast4-humidity"></span>%</p>
+                    <p class="font-size-med">Pressure: <span id="forecast4-pressure"></span></p>
+                    <p class="font-size-med">Wind: <span id="forecast4-wind"></span> mph</p>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="tab-pane fade" id="day5" role="tabpanel" aria-labelledby="nav-disabled-tab" tabindex="0">
-        <div class="chart-container col-6 m-3">
-            <canvas id="chart5"></canvas>
+    <div class="tab-pane row fade" id="day5" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+        <div class="d-flex justify-content-evenly p-0">
+            <div class="chart-container col-5 m-3 p-0">
+                <canvas id="chart5"></canvas>
+            </div>
+            <div class="row col-5 border border-3 rounded-3 m-3 d-flex align-content-around">
+                <h3 class="text-center"><span class="font-size-big" id="forecast5-description"></span></h3>
+                <div class="d-flex justify-content-evenly col-12">
+                    <h4 class="text-center">Low: <span class="day5Low"></span>°F</h4>
+                    <h4>High: <span class="day5High"></span>°F</h4>
+                </div>
+                <div class="d-flex justify-content-evenly col-12">
+                    <p class="font-size-med">Humidity: <span id="forecast5-humidity"></span>%</p>
+                    <p class="font-size-med">Pressure: <span id="forecast5-pressure"></span></p>
+                    <p class="font-size-med">Wind: <span id="forecast5-wind"></span> mph</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

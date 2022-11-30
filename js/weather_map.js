@@ -25,8 +25,8 @@ $(document).ready(function () {
             $('#currentTemp').html(Math.round(currentWeather.main.temp));
             $('#currentConditions').html(capitalize(currentWeatherDesc));
             $('#feelsLikeTemp').html(Math.round(currentWeather.main.feels_like));
-            $('#currentLowTemp').html(Math.round(currentWeather.main.temp_min));
-            $('#currentHighTemp').html(Math.round(currentWeather.main.temp_max));
+            $('.currentLowTemp').html(Math.round(currentWeather.main.temp_min));
+            $('.currentHighTemp').html(Math.round(currentWeather.main.temp_max));
             $('#currentHumidity').html(Math.round(currentWeather.main.humidity));
             $('#currentPressure').html(Math.round(currentWeather.main.pressure));
             $('#currentWindSpeed').html(Math.round(currentWeather.wind.speed));
@@ -219,7 +219,6 @@ $(document).ready(function () {
                         chart4.temps.push(Math.round(forecastData.main.temp))
                     }
                 }
-                console.log(chart1.description)
             })
             createChart("chart1", chart1.dateTime, chart1.temps);
             let chart1Sorted = chart1.temps.sort(function (a, b) {
@@ -228,34 +227,49 @@ $(document).ready(function () {
             $('#day1Low').html(Math.round(chart1Sorted[0]));
             $('#day1High').html(Math.round(chart1Sorted.reverse()[0]));
             $('#forecast1-description').html(capitalize(mode(chart1.description)));
+            $('#forecast1-humidity').html(Math.round(average(chart1.humidity)));
+            $('#forecast1-pressure').html(Math.round(average(chart1.pressure)));
+            $('#forecast1-wind').html(Math.round(average(chart1.wind)));
             createChart("chart2", chart2.dateTime, chart2.temps);
             let chart2Sorted = chart2.temps.sort(function (a, b) {
                 return a - b
             });
-            $('#day2Low').html(Math.round(chart2Sorted[0]));
-            $('#day2High').html(Math.round(chart2Sorted.reverse()[0]));
-            $('#forecast2-description').html(mode(chart1.description));
+            $('.day2Low').html(Math.round(chart2Sorted[0]));
+            $('.day2High').html(Math.round(chart2Sorted.reverse()[0]));
+            $('#forecast2-description').html(capitalize(mode(chart2.description)));
+            $('#forecast2-humidity').html(Math.round(average(chart2.humidity)));
+            $('#forecast2-pressure').html(Math.round(average(chart2.pressure)));
+            $('#forecast2-wind').html(Math.round(average(chart2.wind)));
             createChart("chart3", chart3.dateTime, chart3.temps);
             let chart3Sorted = chart3.temps.sort(function (a, b) {
                 return a - b
             });
-            $('#day3Low').html(Math.round(chart3Sorted[0]));
-            $('#day3High').html(Math.round(chart3Sorted.reverse()[0]));
-            $('#forecast3-description').html(mode(chart1.description));
+            $('.day3Low').html(Math.round(chart3Sorted[0]));
+            $('.day3High').html(Math.round(chart3Sorted.reverse()[0]));
+            $('#forecast3-description').html(capitalize(mode(chart3.description)));
+            $('#forecast3-humidity').html(Math.round(average(chart3.humidity)));
+            $('#forecast3-pressure').html(Math.round(average(chart3.pressure)));
+            $('#forecast3-wind').html(Math.round(average(chart3.wind)));
             createChart("chart4", chart4.dateTime, chart4.temps);
             let chart4Sorted = chart4.temps.sort(function (a, b) {
                 return a - b
             });
-            $('#day4Low').html(Math.round(chart4Sorted[0]));
-            $('#day4High').html(Math.round(chart4Sorted.reverse()[0]));
+            $('.day4Low').html(Math.round(chart4Sorted[0]));
+            $('.day4High').html(Math.round(chart4Sorted.reverse()[0]));
+            $('#forecast4-description').html(capitalize(mode(chart4.description)));
+            $('#forecast4-humidity').html(Math.round(average(chart4.humidity)));
+            $('#forecast4-pressure').html(Math.round(average(chart4.pressure)));
+            $('#forecast4-wind').html(Math.round(average(chart4.wind)));
             createChart("chart5", chart5.dateTime, chart5.temps);
-            $('#forecast4-description').html(mode(chart1.description));
             let chart5Sorted = chart5.temps.sort(function (a, b) {
                 return a - b
             });
-            $('#day5Low').html(Math.round(chart5Sorted[0]));
-            $('#day5High').html(Math.round(chart5Sorted.reverse()[0]));
-            $('#forecast5-description').html(mode(chart1.description));
+            $('.day5Low').html(Math.round(chart5Sorted[0]));
+            $('.day5High').html(Math.round(chart5Sorted.reverse()[0]));
+            $('#forecast5-description').html(capitalize(mode(chart5.description)));
+            $('#forecast5-humidity').html(Math.round(average(chart5.humidity)));
+            $('#forecast5-pressure').html(Math.round(average(chart5.pressure)));
+            $('#forecast5-wind').html(Math.round(average(chart5.wind)));
         });
     }
 
