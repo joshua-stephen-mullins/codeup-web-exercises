@@ -20,6 +20,7 @@ $(document).ready(function () {
             units: "imperial"
         }).done(function (data) {
             currentWeather = data;
+            console.log(data)
             let currentWeatherDesc = currentWeather.weather[0].description;
             $('#currentLocation').html(currentWeather.name);
             $('#currentTemp').html(Math.round(currentWeather.main.temp));
@@ -31,8 +32,27 @@ $(document).ready(function () {
             $('#currentPressure').html(Math.round(currentWeather.main.pressure));
             $('#currentWindSpeed').html(Math.round(currentWeather.wind.speed));
             $('#currentWeatherIcon').html('<img src="http://openweathermap.org/img/w/' + currentWeather.weather[0].icon + '.png" id="currentWeatherIconImg" alt="Weather Icon">')
+            if (currentWeather.weather[0].main === 'Thunderstorm'){
+                $('.currentWeatherWrapBG').attr('src', '../img/thunderstorm.jpg')
+            } else if (currentWeather.weather[0].main === 'Clear'){
+                $('.currentWeatherWrapBG').attr('src', '../img/clear_sky.jpg')
+            } else if (currentWeather.weather[0].main === 'Clouds') {
+                $('.currentWeatherWrapBG').attr('src', '../img/clouds.jpg')
+            } else if (currentWeather.weather[0].main === 'Drizzle') {
+                $('.currentWeatherWrapBG').attr('src', '../img/drizzle.jpg')
+            } else if (currentWeather.weather[0].main === 'Rain') {
+                $('.currentWeatherWrapBG').attr('src', '../img/rain.jpg')
+            } else if (currentWeather.weather[0].main === 'Snow') {
+                $('.currentWeatherWrapBG').attr('src', '../img/snow.jpg')
+            }
         });
     }
+
+    // function setBackground (backgroundClass, description){
+    //     if (description === "Thunderstorm") {
+    //         $(''.' + backgroundClass'').
+    //     }
+    // }
 
     function capitalize(string) {
         let arr = string.split(" ");
@@ -52,7 +72,7 @@ $(document).ready(function () {
         });
     }
 
-    searchBox("Merritt Island");
+    searchBox("dallas");
 
     $('#searchBox').click(function (e) {
         e.preventDefault();
@@ -93,6 +113,7 @@ $(document).ready(function () {
             chart1.humidity = [];
             chart1.pressure = [];
             chart1.wind = [];
+            chart1.backgroundWeather = '';
             let chart2 = {}
             chart2.dateTime = [];
             chart2.temps = [];
@@ -100,6 +121,7 @@ $(document).ready(function () {
             chart2.humidity = [];
             chart2.pressure = [];
             chart2.wind = [];
+            chart2.backgroundWeather = '';
             let chart3 = {}
             chart3.dateTime = [];
             chart3.temps = [];
@@ -107,6 +129,7 @@ $(document).ready(function () {
             chart3.humidity = [];
             chart3.pressure = [];
             chart3.wind = [];
+            chart3.backgroundWeather = '';
             let chart4 = {}
             chart4.dateTime = [];
             chart4.temps = [];
@@ -114,6 +137,7 @@ $(document).ready(function () {
             chart4.humidity = [];
             chart4.pressure = [];
             chart4.wind = [];
+            chart4.backgroundWeather = '';
             let chart5 = {}
             chart5.dateTime = [];
             chart5.temps = [];
@@ -121,6 +145,8 @@ $(document).ready(function () {
             chart5.humidity = [];
             chart5.pressure = [];
             chart5.wind = [];
+            chart5.backgroundWeather = '';
+
 
             function addDays(date, days) {
                 let result = new Date(date);
@@ -170,6 +196,19 @@ $(document).ready(function () {
                     chart1.pressure.push(forecastData.main.pressure)
                     chart1.wind.push(forecastData.wind.speed)
                     $('#day1Header').html('Today')
+                    if (forecastData.weather[0].main === 'Thunderstorm'){
+                        $('.day1WeatherWrapBG').attr('src', '../img/thunderstorm.jpg')
+                    } else if (forecastData.weather[0].main === 'Clear'){
+                        $('.day1WeatherWrapBG').attr('src', '../img/clear_sky.jpg')
+                    } else if (forecastData.weather[0].main === 'Clouds') {
+                        $('.day1WeatherWrapBG').attr('src', '../img/clouds.jpg')
+                    } else if (forecastData.weather[0].main === 'Drizzle') {
+                        $('.day1WeatherWrapBG').attr('src', '../img/drizzle.jpg')
+                    } else if (forecastData.weather[0].main === 'Rain') {
+                        $('.day1WeatherWrapBG').attr('src', '../img/rain.jpg')
+                    } else if (forecastData.weather[0].main === 'Snow') {
+                        $('.day1WeatherWrapBG').attr('src', '../img/snow.jpg')
+                    }
                 } else if (forecastDataDateOnly === (addDays(currentTime, 1).toLocaleDateString())) {
                     chart2.dateTime.push(forecastDataTime);
                     chart2.temps.push(Math.round(forecastData.main.temp))
@@ -178,6 +217,19 @@ $(document).ready(function () {
                     chart2.pressure.push(forecastData.main.pressure)
                     chart2.wind.push(forecastData.wind.speed)
                     $('#day2Header').html(addDays(currentTime, 1).toLocaleDateString())
+                    if (forecastData.weather[0].main === 'Thunderstorm'){
+                        $('.day2WeatherWrapBG').attr('src', '../img/thunderstorm.jpg')
+                    } else if (forecastData.weather[0].main === 'Clear'){
+                        $('.day2WeatherWrapBG').attr('src', '../img/clear_sky.jpg')
+                    } else if (forecastData.weather[0].main === 'Clouds') {
+                        $('.day2WeatherWrapBG').attr('src', '../img/clouds.jpg')
+                    } else if (forecastData.weather[0].main === 'Drizzle') {
+                        $('.day2WeatherWrapBG').attr('src', '../img/drizzle.jpg')
+                    } else if (forecastData.weather[0].main === 'Rain') {
+                        $('.day2WeatherWrapBG').attr('src', '../img/rain.jpg')
+                    } else if (forecastData.weather[0].main === 'Snow') {
+                        $('.day2WeatherWrapBG').attr('src', '../img/snow.jpg')
+                    }
                     if (forecastDataTime === '12:00:00 AM') {
                         chart1.dateTime.push(forecastDataTime);
                         chart1.temps.push(Math.round(forecastData.main.temp))
@@ -190,6 +242,19 @@ $(document).ready(function () {
                     chart3.pressure.push(forecastData.main.pressure)
                     chart3.wind.push(forecastData.wind.speed)
                     $('#day3Header').html(addDays(currentTime, 2).toLocaleDateString())
+                    if (forecastData.weather[0].main === 'Thunderstorm'){
+                        $('.day3WeatherWrapBG').attr('src', '../img/thunderstorm.jpg')
+                    } else if (forecastData.weather[0].main === 'Clear'){
+                        $('.day3WeatherWrapBG').attr('src', '../img/clear_sky.jpg')
+                    } else if (forecastData.weather[0].main === 'Clouds') {
+                        $('.day3WeatherWrapBG').attr('src', '../img/clouds.jpg')
+                    } else if (forecastData.weather[0].main === 'Drizzle') {
+                        $('.day3WeatherWrapBG').attr('src', '../img/drizzle.jpg')
+                    } else if (forecastData.weather[0].main === 'Rain') {
+                        $('.day3WeatherWrapBG').attr('src', '../img/rain.jpg')
+                    } else if (forecastData.weather[0].main === 'Snow') {
+                        $('.day3WeatherWrapBG').attr('src', '../img/snow.jpg')
+                    }
                     if (forecastDataTime === '12:00:00 AM') {
                         chart2.dateTime.push(forecastDataTime);
                         chart2.temps.push(Math.round(forecastData.main.temp))
@@ -202,6 +267,19 @@ $(document).ready(function () {
                     chart4.pressure.push(forecastData.main.pressure)
                     chart4.wind.push(forecastData.wind.speed)
                     $('#day4Header').html(addDays(currentTime, 3).toLocaleDateString())
+                    if (forecastData.weather[0].main === 'Thunderstorm'){
+                        $('.day4WeatherWrapBG').attr('src', '../img/thunderstorm.jpg')
+                    } else if (forecastData.weather[0].main === 'Clear'){
+                        $('.day4WeatherWrapBG').attr('src', '../img/clear_sky.jpg')
+                    } else if (forecastData.weather[0].main === 'Clouds') {
+                        $('.day4WeatherWrapBG').attr('src', '../img/clouds.jpg')
+                    } else if (forecastData.weather[0].main === 'Drizzle') {
+                        $('.day4WeatherWrapBG').attr('src', '../img/drizzle.jpg')
+                    } else if (forecastData.weather[0].main === 'Rain') {
+                        $('.day4WeatherWrapBG').attr('src', '../img/rain.jpg')
+                    } else if (forecastData.weather[0].main === 'Snow') {
+                        $('.day4WeatherWrapBG').attr('src', '../img/snow.jpg')
+                    }
                     if (forecastDataTime === '12:00:00 AM') {
                         chart3.dateTime.push(forecastDataTime);
                         chart3.temps.push(Math.round(forecastData.main.temp))
@@ -214,6 +292,19 @@ $(document).ready(function () {
                     chart5.pressure.push(forecastData.main.pressure)
                     chart5.wind.push(forecastData.wind.speed)
                     $('#day5Header').html(addDays(currentTime, 4).toLocaleDateString())
+                    if (forecastData.weather[0].main === 'Thunderstorm'){
+                        $('.day5WeatherWrapBG').attr('src', '../img/thunderstorm.jpg')
+                    } else if (forecastData.weather[0].main === 'Clear'){
+                        $('.day5WeatherWrapBG').attr('src', '../img/clear_sky.jpg')
+                    } else if (forecastData.weather[0].main === 'Clouds') {
+                        $('.day5WeatherWrapBG').attr('src', '../img/clouds.jpg')
+                    } else if (forecastData.weather[0].main === 'Drizzle') {
+                        $('.day5WeatherWrapBG').attr('src', '../img/drizzle.jpg')
+                    } else if (forecastData.weather[0].main === 'Rain') {
+                        $('.day5WeatherWrapBG').attr('src', '../img/rain.jpg')
+                    } else if (forecastData.weather[0].main === 'Snow') {
+                        $('.day5WeatherWrapBG').attr('src', '../img/snow.jpg')
+                    }
                     if (forecastDataTime === '12:00:00 AM') {
                         chart4.dateTime.push(forecastDataTime);
                         chart4.temps.push(Math.round(forecastData.main.temp))
@@ -277,6 +368,12 @@ $(document).ready(function () {
         const ctx = document.getElementById(divName).getContext('2d');
         const myChart = new Chart(ctx, {
             type: 'line',
+            default: {
+                font: {
+                    family: "Poppins', sans-serif",
+                    weight: 'bold'
+                }
+            },
             data: {
                 labels: timeBrackets,
                 datasets: [{

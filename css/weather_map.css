@@ -3,6 +3,121 @@
 /*    height: 100%;*/
 /*}*/
 
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #c1cee5;
+
+}
+
+header {
+    background-color: #6c8bc2 !important;
+}
+
+main {
+}
+
+.nav-tabs {
+    background-color: #819ccb;
+}
+
+.nav-tabs .nav-link.active, .tab-pane {
+    background-color: #acbddb !important;
+}
+
+.nav-link.active {
+    border-bottom: none !important;
+}
+
+.currentWeatherWrap {
+    overflow: hidden;
+    position: relative;
+}
+.currentWeatherWrapBG {
+    opacity: 0.3;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+}
+.currentWeatherContent {
+    position: relative;
+}
+.day1WeatherWrap {
+    overflow: hidden;
+    position: relative;
+}
+.day1WeatherWrapBG {
+    opacity: 0.3;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+}
+.day1WeatherContent {
+    position: relative;
+}
+.day2WeatherWrap {
+    overflow: hidden;
+    position: relative;
+}
+.day2WeatherWrapBG {
+    opacity: 0.3;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+}
+.day2WeatherContent {
+    position: relative;
+}
+.day3WeatherWrap {
+    overflow: hidden;
+    position: relative;
+}
+.day3WeatherWrapBG {
+    opacity: 0.3;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+}
+.day3WeatherContent {
+    position: relative;
+}
+.day4WeatherWrap {
+    overflow: hidden;
+    position: relative;
+}
+.day4WeatherWrapBG {
+    opacity: 0.3;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+}
+.day4WeatherContent {
+    position: relative;
+}
+.day5WeatherWrap {
+    overflow: hidden;
+    position: relative;
+}
+.day5WeatherWrapBG {
+    opacity: 0.3;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+}
+.day5WeatherContent {
+    position: relative;
+}
 
 #currentTemp {
     font-size: 5rem;
