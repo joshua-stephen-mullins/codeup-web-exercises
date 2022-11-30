@@ -11,6 +11,10 @@ $(document).ready(function () {
         zoom: 10,
     });
 
+    map.on('load', function () {
+        map.resize();
+    });
+
     function loadMapCurrent() {
         const lngLat = marker.getLngLat();
         $.get("http://api.openweathermap.org/data/2.5/weather", {
@@ -41,7 +45,7 @@ $(document).ready(function () {
             } else if (currentWeather.weather[0].main === 'Drizzle') {
                 $('.currentWeatherWrapBG').attr('src', '../img/drizzle.jpg')
             } else if (currentWeather.weather[0].main === 'Rain') {
-                $('.currentWeatherWrapBG').attr('src', '../img/rain.jpg')
+                $('.currentWeatherWrapBG').attr('src', '../img/rain.jpeg')
             } else if (currentWeather.weather[0].main === 'Snow') {
                 $('.currentWeatherWrapBG').attr('src', '../img/snow.jpg')
             }
@@ -55,11 +59,13 @@ $(document).ready(function () {
     // }
 
     function capitalize(string) {
-        let arr = string.split(" ");
-        for (let i = 0; i < arr.length; i++) {
-            arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+        if (string !== null) {
+            let arr = string.split(" ");
+            for (let i = 0; i < arr.length; i++) {
+                arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+            }
+            return arr.join(" ")
         }
-        return arr.join(" ")
     }
 
     function searchBox(searchTerm) {
@@ -205,7 +211,7 @@ $(document).ready(function () {
                     } else if (forecastData.weather[0].main === 'Drizzle') {
                         $('.day1WeatherWrapBG').attr('src', '../img/drizzle.jpg')
                     } else if (forecastData.weather[0].main === 'Rain') {
-                        $('.day1WeatherWrapBG').attr('src', '../img/rain.jpg')
+                        $('.day1WeatherWrapBG').attr('src', '../img/rain.jpeg')
                     } else if (forecastData.weather[0].main === 'Snow') {
                         $('.day1WeatherWrapBG').attr('src', '../img/snow.jpg')
                     }
@@ -226,7 +232,7 @@ $(document).ready(function () {
                     } else if (forecastData.weather[0].main === 'Drizzle') {
                         $('.day2WeatherWrapBG').attr('src', '../img/drizzle.jpg')
                     } else if (forecastData.weather[0].main === 'Rain') {
-                        $('.day2WeatherWrapBG').attr('src', '../img/rain.jpg')
+                        $('.day2WeatherWrapBG').attr('src', '../img/rain.jpeg')
                     } else if (forecastData.weather[0].main === 'Snow') {
                         $('.day2WeatherWrapBG').attr('src', '../img/snow.jpg')
                     }
@@ -251,7 +257,7 @@ $(document).ready(function () {
                     } else if (forecastData.weather[0].main === 'Drizzle') {
                         $('.day3WeatherWrapBG').attr('src', '../img/drizzle.jpg')
                     } else if (forecastData.weather[0].main === 'Rain') {
-                        $('.day3WeatherWrapBG').attr('src', '../img/rain.jpg')
+                        $('.day3WeatherWrapBG').attr('src', '../img/rain.jpeg')
                     } else if (forecastData.weather[0].main === 'Snow') {
                         $('.day3WeatherWrapBG').attr('src', '../img/snow.jpg')
                     }
@@ -276,7 +282,7 @@ $(document).ready(function () {
                     } else if (forecastData.weather[0].main === 'Drizzle') {
                         $('.day4WeatherWrapBG').attr('src', '../img/drizzle.jpg')
                     } else if (forecastData.weather[0].main === 'Rain') {
-                        $('.day4WeatherWrapBG').attr('src', '../img/rain.jpg')
+                        $('.day4WeatherWrapBG').attr('src', '../img/rain.jpeg')
                     } else if (forecastData.weather[0].main === 'Snow') {
                         $('.day4WeatherWrapBG').attr('src', '../img/snow.jpg')
                     }
@@ -301,7 +307,7 @@ $(document).ready(function () {
                     } else if (forecastData.weather[0].main === 'Drizzle') {
                         $('.day5WeatherWrapBG').attr('src', '../img/drizzle.jpg')
                     } else if (forecastData.weather[0].main === 'Rain') {
-                        $('.day5WeatherWrapBG').attr('src', '../img/rain.jpg')
+                        $('.day5WeatherWrapBG').attr('src', '../img/rain.jpeg')
                     } else if (forecastData.weather[0].main === 'Snow') {
                         $('.day5WeatherWrapBG').attr('src', '../img/snow.jpg')
                     }
@@ -310,9 +316,18 @@ $(document).ready(function () {
                         chart4.temps.push(Math.round(forecastData.main.temp))
                     }
                 }
+
             })
+
             createChart("chart1", chart1.dateTime, chart1.temps);
-            let chart1Sorted = chart1.temps.sort(function (a, b) {
+            createChart("chart2", chart2.dateTime, chart2.temps);
+            createChart("chart3", chart3.dateTime, chart3.temps);
+            createChart("chart4", chart4.dateTime, chart4.temps);
+            createChart("chart5", chart5.dateTime, chart5.temps);
+
+
+
+            let chart1Sorted = Array.from(chart1.temps).sort(function (a, b) {
                 return a - b
             });
             $('#day1Low').html(Math.round(chart1Sorted[0]));
@@ -321,8 +336,7 @@ $(document).ready(function () {
             $('#forecast1-humidity').html(Math.round(average(chart1.humidity)));
             $('#forecast1-pressure').html(Math.round(average(chart1.pressure)));
             $('#forecast1-wind').html(Math.round(average(chart1.wind)));
-            createChart("chart2", chart2.dateTime, chart2.temps);
-            let chart2Sorted = chart2.temps.sort(function (a, b) {
+            let chart2Sorted = Array.from(chart2.temps).sort(function (a, b) {
                 return a - b
             });
             $('.day2Low').html(Math.round(chart2Sorted[0]));
@@ -331,8 +345,7 @@ $(document).ready(function () {
             $('#forecast2-humidity').html(Math.round(average(chart2.humidity)));
             $('#forecast2-pressure').html(Math.round(average(chart2.pressure)));
             $('#forecast2-wind').html(Math.round(average(chart2.wind)));
-            createChart("chart3", chart3.dateTime, chart3.temps);
-            let chart3Sorted = chart3.temps.sort(function (a, b) {
+            let chart3Sorted = Array.from(chart3.temps).sort(function (a, b) {
                 return a - b
             });
             $('.day3Low').html(Math.round(chart3Sorted[0]));
@@ -341,8 +354,7 @@ $(document).ready(function () {
             $('#forecast3-humidity').html(Math.round(average(chart3.humidity)));
             $('#forecast3-pressure').html(Math.round(average(chart3.pressure)));
             $('#forecast3-wind').html(Math.round(average(chart3.wind)));
-            createChart("chart4", chart4.dateTime, chart4.temps);
-            let chart4Sorted = chart4.temps.sort(function (a, b) {
+            let chart4Sorted = Array.from(chart4.temps).sort(function (a, b) {
                 return a - b
             });
             $('.day4Low').html(Math.round(chart4Sorted[0]));
@@ -351,8 +363,7 @@ $(document).ready(function () {
             $('#forecast4-humidity').html(Math.round(average(chart4.humidity)));
             $('#forecast4-pressure').html(Math.round(average(chart4.pressure)));
             $('#forecast4-wind').html(Math.round(average(chart4.wind)));
-            createChart("chart5", chart5.dateTime, chart5.temps);
-            let chart5Sorted = chart5.temps.sort(function (a, b) {
+            let chart5Sorted = Array.from(chart5.temps).sort(function (a, b) {
                 return a - b
             });
             $('.day5Low').html(Math.round(chart5Sorted[0]));
@@ -371,7 +382,7 @@ $(document).ready(function () {
             default: {
                 font: {
                     family: "Poppins', sans-serif",
-                    weight: 'bold'
+                    weight: 'bolder'
                 }
             },
             data: {
@@ -386,7 +397,9 @@ $(document).ready(function () {
             options: {
                 legend: {display: false},
                 scales: {
+                    grid: {display: false},
                     yAxes: [{
+                        grid: {display: false},
                         // display: false,
                         ticks: {
                             beginAtZero: false,
