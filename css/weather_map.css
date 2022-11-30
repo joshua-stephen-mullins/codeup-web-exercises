@@ -8,6 +8,10 @@
     font-size: 5rem;
 }
 
+.font-size-big {
+    font-size: 3rem;
+}
+
 .nav-tabs button {
     color: black;
 }
