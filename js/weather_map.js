@@ -37,35 +37,19 @@ $(document).ready(function () {
             $('#currentWindSpeed').html(Math.round(currentWeather.wind.speed));
             $('#currentWeatherIcon').html('<img src="http://openweathermap.org/img/w/' + currentWeather.weather[0].icon + '.png" id="currentWeatherIconImg" alt="Weather Icon">')
             if (currentWeather.weather[0].main === 'Thunderstorm'){
-                $('.currentWeatherWrapBG').attr('src', '../img/thunderstorm.jpg')
+                $('.currentWeatherWrapBG').attr('src', '../img/Thunderstorm.jpg')
             } else if (currentWeather.weather[0].main === 'Clear'){
-                $('.currentWeatherWrapBG').attr('src', '../img/clear_sky.jpg')
+                $('.currentWeatherWrapBG').attr('src', '../img/Clear.jpg')
             } else if (currentWeather.weather[0].main === 'Clouds') {
-                $('.currentWeatherWrapBG').attr('src', '../img/clouds.jpg')
+                $('.currentWeatherWrapBG').attr('src', '../img/Clouds.jpg')
             } else if (currentWeather.weather[0].main === 'Drizzle') {
-                $('.currentWeatherWrapBG').attr('src', '../img/drizzle.jpg')
+                $('.currentWeatherWrapBG').attr('src', '../img/Drizzle.jpg')
             } else if (currentWeather.weather[0].main === 'Rain') {
-                $('.currentWeatherWrapBG').attr('src', '../img/rain.jpeg')
+                $('.currentWeatherWrapBG').attr('src', '../img/Rain.jpg')
             } else if (currentWeather.weather[0].main === 'Snow') {
-                $('.currentWeatherWrapBG').attr('src', '../img/snow.jpg')
+                $('.currentWeatherWrapBG').attr('src', '../img/Snow.jpg')
             }
         });
-    }
-
-    // function setBackground (backgroundClass, description){
-    //     if (description === "Thunderstorm") {
-    //         $(''.' + backgroundClass'').
-    //     }
-    // }
-
-    function capitalize(string) {
-        if (string !== null) {
-            let arr = string.split(" ");
-            for (let i = 0; i < arr.length; i++) {
-                arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
-            }
-            return arr.join(" ")
-        }
     }
 
     function searchBox(searchTerm) {
@@ -154,38 +138,9 @@ $(document).ready(function () {
             chart5.backgroundWeather = '';
 
 
-            function addDays(date, days) {
-                let result = new Date(date);
-                result.setDate(result.getDate() + days);
-                return result;
-            }
 
-            function mode(array) {
-                if (array.length == 0)
-                    return null;
-                let modeMap = {};
-                let maxEl = array[0], maxCount = 1;
-                for (let i = 0; i < array.length; i++) {
-                    let el = array[i];
-                    if (modeMap[el] == null)
-                        modeMap[el] = 1;
-                    else
-                        modeMap[el]++;
-                    if (modeMap[el] > maxCount) {
-                        maxEl = el;
-                        maxCount = modeMap[el];
-                    }
-                }
-                return maxEl;
-            }
 
-            function average(array) {
-                let total = 0;
-                for (let i = 0; i < array.length; i++) {
-                    total += array[i];
-                }
-                return total / array.length;
-            }
+
 
             let currentTime = new Date(currentWeather.dt * 1000);
             let currentDate = currentTime.toLocaleDateString();
@@ -203,17 +158,17 @@ $(document).ready(function () {
                     chart1.wind.push(forecastData.wind.speed)
                     $('#day1Header').html('Today')
                     if (forecastData.weather[0].main === 'Thunderstorm'){
-                        $('.day1WeatherWrapBG').attr('src', '../img/thunderstorm.jpg')
+                        $('.day1WeatherWrapBG').attr('src', '../img/Thunderstorm.jpg')
                     } else if (forecastData.weather[0].main === 'Clear'){
-                        $('.day1WeatherWrapBG').attr('src', '../img/clear_sky.jpg')
+                        $('.day1WeatherWrapBG').attr('src', '../img/Clear.jpg')
                     } else if (forecastData.weather[0].main === 'Clouds') {
-                        $('.day1WeatherWrapBG').attr('src', '../img/clouds.jpg')
+                        $('.day1WeatherWrapBG').attr('src', '../img/Clouds.jpg')
                     } else if (forecastData.weather[0].main === 'Drizzle') {
-                        $('.day1WeatherWrapBG').attr('src', '../img/drizzle.jpg')
+                        $('.day1WeatherWrapBG').attr('src', '../img/Drizzle.jpg')
                     } else if (forecastData.weather[0].main === 'Rain') {
-                        $('.day1WeatherWrapBG').attr('src', '../img/rain.jpeg')
+                        $('.day1WeatherWrapBG').attr('src', '../img/Rain.jpg')
                     } else if (forecastData.weather[0].main === 'Snow') {
-                        $('.day1WeatherWrapBG').attr('src', '../img/snow.jpg')
+                        $('.day1WeatherWrapBG').attr('src', '../img/Snow.jpg')
                     }
                 } else if (forecastDataDateOnly === (addDays(currentTime, 1).toLocaleDateString())) {
                     chart2.dateTime.push(forecastDataTime);
@@ -224,17 +179,17 @@ $(document).ready(function () {
                     chart2.wind.push(forecastData.wind.speed)
                     $('#day2Header').html(addDays(currentTime, 1).toLocaleDateString())
                     if (forecastData.weather[0].main === 'Thunderstorm'){
-                        $('.day2WeatherWrapBG').attr('src', '../img/thunderstorm.jpg')
+                        $('.day2WeatherWrapBG').attr('src', '../img/Thunderstorm.jpg')
                     } else if (forecastData.weather[0].main === 'Clear'){
-                        $('.day2WeatherWrapBG').attr('src', '../img/clear_sky.jpg')
+                        $('.day2WeatherWrapBG').attr('src', '../img/Clear.jpg')
                     } else if (forecastData.weather[0].main === 'Clouds') {
-                        $('.day2WeatherWrapBG').attr('src', '../img/clouds.jpg')
+                        $('.day2WeatherWrapBG').attr('src', '../img/Clouds.jpg')
                     } else if (forecastData.weather[0].main === 'Drizzle') {
-                        $('.day2WeatherWrapBG').attr('src', '../img/drizzle.jpg')
+                        $('.day2WeatherWrapBG').attr('src', '../img/Drizzle.jpg')
                     } else if (forecastData.weather[0].main === 'Rain') {
-                        $('.day2WeatherWrapBG').attr('src', '../img/rain.jpeg')
+                        $('.day2WeatherWrapBG').attr('src', '../img/Rain.jpg')
                     } else if (forecastData.weather[0].main === 'Snow') {
-                        $('.day2WeatherWrapBG').attr('src', '../img/snow.jpg')
+                        $('.day2WeatherWrapBG').attr('src', '../img/Snow.jpg')
                     }
                     if (forecastDataTime === '12:00:00 AM') {
                         chart1.dateTime.push(forecastDataTime);
@@ -249,17 +204,17 @@ $(document).ready(function () {
                     chart3.wind.push(forecastData.wind.speed)
                     $('#day3Header').html(addDays(currentTime, 2).toLocaleDateString())
                     if (forecastData.weather[0].main === 'Thunderstorm'){
-                        $('.day3WeatherWrapBG').attr('src', '../img/thunderstorm.jpg')
+                        $('.day3WeatherWrapBG').attr('src', '../img/Thunderstorm.jpg')
                     } else if (forecastData.weather[0].main === 'Clear'){
-                        $('.day3WeatherWrapBG').attr('src', '../img/clear_sky.jpg')
+                        $('.day3WeatherWrapBG').attr('src', '../img/Clear.jpg')
                     } else if (forecastData.weather[0].main === 'Clouds') {
-                        $('.day3WeatherWrapBG').attr('src', '../img/clouds.jpg')
+                        $('.day3WeatherWrapBG').attr('src', '../img/Clouds.jpg')
                     } else if (forecastData.weather[0].main === 'Drizzle') {
-                        $('.day3WeatherWrapBG').attr('src', '../img/drizzle.jpg')
+                        $('.day3WeatherWrapBG').attr('src', '../img/Drizzle.jpg')
                     } else if (forecastData.weather[0].main === 'Rain') {
-                        $('.day3WeatherWrapBG').attr('src', '../img/rain.jpeg')
+                        $('.day3WeatherWrapBG').attr('src', '../img/Rain.jpg')
                     } else if (forecastData.weather[0].main === 'Snow') {
-                        $('.day3WeatherWrapBG').attr('src', '../img/snow.jpg')
+                        $('.day3WeatherWrapBG').attr('src', '../img/Snow.jpg')
                     }
                     if (forecastDataTime === '12:00:00 AM') {
                         chart2.dateTime.push(forecastDataTime);
@@ -274,17 +229,17 @@ $(document).ready(function () {
                     chart4.wind.push(forecastData.wind.speed)
                     $('#day4Header').html(addDays(currentTime, 3).toLocaleDateString())
                     if (forecastData.weather[0].main === 'Thunderstorm'){
-                        $('.day4WeatherWrapBG').attr('src', '../img/thunderstorm.jpg')
+                        $('.day4WeatherWrapBG').attr('src', '../img/Thunderstorm.jpg')
                     } else if (forecastData.weather[0].main === 'Clear'){
-                        $('.day4WeatherWrapBG').attr('src', '../img/clear_sky.jpg')
+                        $('.day4WeatherWrapBG').attr('src', '../img/Clear.jpg')
                     } else if (forecastData.weather[0].main === 'Clouds') {
-                        $('.day4WeatherWrapBG').attr('src', '../img/clouds.jpg')
+                        $('.day4WeatherWrapBG').attr('src', '../img/Clouds.jpg')
                     } else if (forecastData.weather[0].main === 'Drizzle') {
-                        $('.day4WeatherWrapBG').attr('src', '../img/drizzle.jpg')
+                        $('.day4WeatherWrapBG').attr('src', '../img/Drizzle.jpg')
                     } else if (forecastData.weather[0].main === 'Rain') {
-                        $('.day4WeatherWrapBG').attr('src', '../img/rain.jpeg')
+                        $('.day4WeatherWrapBG').attr('src', '../img/Rain.jpg')
                     } else if (forecastData.weather[0].main === 'Snow') {
-                        $('.day4WeatherWrapBG').attr('src', '../img/snow.jpg')
+                        $('.day4WeatherWrapBG').attr('src', '../img/Snow.jpg')
                     }
                     if (forecastDataTime === '12:00:00 AM') {
                         chart3.dateTime.push(forecastDataTime);
@@ -299,17 +254,17 @@ $(document).ready(function () {
                     chart5.wind.push(forecastData.wind.speed)
                     $('#day5Header').html(addDays(currentTime, 4).toLocaleDateString())
                     if (forecastData.weather[0].main === 'Thunderstorm'){
-                        $('.day5WeatherWrapBG').attr('src', '../img/thunderstorm.jpg')
+                        $('.day5WeatherWrapBG').attr('src', '../img/Thunderstorm.jpg')
                     } else if (forecastData.weather[0].main === 'Clear'){
-                        $('.day5WeatherWrapBG').attr('src', '../img/clear_sky.jpg')
+                        $('.day5WeatherWrapBG').attr('src', '../img/Clear.jpg')
                     } else if (forecastData.weather[0].main === 'Clouds') {
-                        $('.day5WeatherWrapBG').attr('src', '../img/clouds.jpg')
+                        $('.day5WeatherWrapBG').attr('src', '../img/Clouds.jpg')
                     } else if (forecastData.weather[0].main === 'Drizzle') {
-                        $('.day5WeatherWrapBG').attr('src', '../img/drizzle.jpg')
+                        $('.day5WeatherWrapBG').attr('src', '../img/Drizzle.jpg')
                     } else if (forecastData.weather[0].main === 'Rain') {
-                        $('.day5WeatherWrapBG').attr('src', '../img/rain.jpeg')
+                        $('.day5WeatherWrapBG').attr('src', '../img/Rain.jpg')
                     } else if (forecastData.weather[0].main === 'Snow') {
-                        $('.day5WeatherWrapBG').attr('src', '../img/snow.jpg')
+                        $('.day5WeatherWrapBG').attr('src', '../img/Snow.jpg')
                     }
                     if (forecastDataTime === '12:00:00 AM') {
                         chart4.dateTime.push(forecastDataTime);
@@ -373,6 +328,49 @@ $(document).ready(function () {
             $('#forecast5-pressure').html(Math.round(average(chart5.pressure)));
             $('#forecast5-wind').html(Math.round(average(chart5.wind)));
         });
+    }
+
+    function addDays(date, days) {
+        let result = new Date(date);
+        result.setDate(result.getDate() + days);
+        return result;
+    }
+
+    function mode(array) {
+        if (array.length == 0)
+            return null;
+        let modeMap = {};
+        let maxEl = array[0], maxCount = 1;
+        for (let i = 0; i < array.length; i++) {
+            let el = array[i];
+            if (modeMap[el] == null)
+                modeMap[el] = 1;
+            else
+                modeMap[el]++;
+            if (modeMap[el] > maxCount) {
+                maxEl = el;
+                maxCount = modeMap[el];
+            }
+        }
+        return maxEl;
+    }
+
+    function average(array) {
+        let total = 0;
+        for (let i = 0; i < array.length; i++) {
+            total += array[i];
+        }
+        return total / array.length;
+    }
+
+    function capitalize(string) {
+        if (string !== null) {
+            let arr = string.split(" ");
+            for (let i = 0; i < arr.length; i++) {
+                arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
+            }
+            return arr.join(" ")
+        }
     }
 
     function createChart(divName, timeBrackets, dayTemps) {
