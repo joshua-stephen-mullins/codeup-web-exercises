@@ -36,19 +36,7 @@ $(document).ready(function () {
             $('#currentPressure').html(Math.round(currentWeather.main.pressure));
             $('#currentWindSpeed').html(Math.round(currentWeather.wind.speed));
             $('#currentWeatherIcon').html('<img src="http://openweathermap.org/img/w/' + currentWeather.weather[0].icon + '.png" id="currentWeatherIconImg" alt="Weather Icon">')
-            if (currentWeather.weather[0].main === 'Thunderstorm'){
-                $('.currentWeatherWrapBG').attr('src', '../img/Thunderstorm.jpg')
-            } else if (currentWeather.weather[0].main === 'Clear'){
-                $('.currentWeatherWrapBG').attr('src', '../img/Clear.jpg')
-            } else if (currentWeather.weather[0].main === 'Clouds') {
-                $('.currentWeatherWrapBG').attr('src', '../img/Clouds.jpg')
-            } else if (currentWeather.weather[0].main === 'Drizzle') {
-                $('.currentWeatherWrapBG').attr('src', '../img/Drizzle.jpg')
-            } else if (currentWeather.weather[0].main === 'Rain') {
-                $('.currentWeatherWrapBG').attr('src', '../img/Rain.jpg')
-            } else if (currentWeather.weather[0].main === 'Snow') {
-                $('.currentWeatherWrapBG').attr('src', '../img/Snow.jpg')
-            }
+            $('.currentWeatherWrapBG').attr('src', `../img/${currentWeather.weather[0].main}.jpg`)
         });
     }
 
@@ -136,11 +124,6 @@ $(document).ready(function () {
             chart5.pressure = [];
             chart5.wind = [];
             chart5.backgroundWeather = '';
-
-
-
-
-
 
             let currentTime = new Date(currentWeather.dt * 1000);
             let currentDate = currentTime.toLocaleDateString();
