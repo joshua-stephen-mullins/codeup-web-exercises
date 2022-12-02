@@ -1,8 +1,6 @@
 'use strict';
 
 $(document).ready(function () {
-
-
     function addDays(date, days) {
         let result = new Date(date);
         result.setDate(result.getDate() + days);
@@ -10,8 +8,6 @@ $(document).ready(function () {
     }
 
     function mode(array) {
-        if (array.length == 0)
-            return null;
         let modeMap = {};
         let maxEl = array[0], maxCount = 1;
         for (let i = 0; i < array.length; i++) {
@@ -67,23 +63,12 @@ $(document).ready(function () {
             },
             options: {
                 legend: {display: false},
-                scales: {
-                    grid: {display: false},
-                    yAxes: [{
-                        grid: {display: false},
-                        // display: false,
-                        ticks: {
-                            beginAtZero: false,
-                        }
-                    }]
-                }
+                scales: {grid: {display: false}, yAxes: [{grid: {display: false}, ticks: {beginAtZero: false,}}]}
             },
         });
     }
 
-
-    let currentWeather = {};
-    let weatherForecast = {};
+    let currentWeather = {}, weatherForecast = {};
 
     mapboxgl.accessToken = MAPBOX_TOKEN;
     let map = new mapboxgl.Map({
@@ -92,11 +77,7 @@ $(document).ready(function () {
         zoom: 10,
     });
 
-    map.on('load', function () {
-        map.resize();
-    });
-
-    function loadMapCurrent() {
+    function loadMap() {
         const lngLat = marker.getLngLat();
         $.get("http://api.openweathermap.org/data/2.5/weather", {
             APPID: OPEN_WEATHER_APPID,
@@ -105,39 +86,87 @@ $(document).ready(function () {
             units: "imperial"
         }).done(function (data) {
             currentWeather = data;
-            console.log(data)
-            let currentWeatherDesc = currentWeather.weather[0].description;
             $('#currentLocation').html(currentWeather.name);
             $('#currentTemp').html(Math.round(currentWeather.main.temp));
-            $('#currentConditions').html(capitalize(currentWeatherDesc));
+            $('#currentConditions').html(capitalize(currentWeather.weather[0].description));
             $('#feelsLikeTemp').html(Math.round(currentWeather.main.feels_like));
             $('.currentLowTemp').html(Math.round(currentWeather.main.temp_min));
             $('.currentHighTemp').html(Math.round(currentWeather.main.temp_max));
             $('#currentHumidity').html(Math.round(currentWeather.main.humidity));
             $('#currentPressure').html(Math.round(currentWeather.main.pressure));
             $('#currentWindSpeed').html(Math.round(currentWeather.wind.speed));
-            $('#currentWeatherIcon').html('<img src="http://openweathermap.org/img/w/' + currentWeather.weather[0].icon + '.png" id="currentWeatherIconImg" alt="Weather Icon">')
             $('.currentWeatherWrapBG').attr('src', `../img/${currentWeather.weather[0].main}.jpg`)
         });
+        $.get("http://api.openweathermap.org/data/2.5/forecast", {
+            APPID: OPEN_WEATHER_APPID,
+            lat: lngLat.lat,
+            lon: lngLat.lng,
+            units: "imperial"
+        }).done(function (data) {
+            weatherForecast = data;
+            let chart = [[], [], [], [], [], []];
+            let currentTime = new Date(currentWeather.dt * 1000);
+            let currentDate = currentTime.toLocaleDateString();
+
+            for (let f = 0; f < 5; f++) {
+                for (let ft = 0; ft < weatherForecast.list.length; ft++) {
+                    let forecastData = weatherForecast.list[ft]
+                    let forecastDataDate = new Date(forecastData.dt * 1000);
+                    let forecastDataDateOnly = forecastDataDate.toLocaleDateString();
+                    let forecastDataTime = forecastDataDate.toLocaleTimeString();
+                    if (forecastDataDateOnly === (addDays(currentTime, f).toLocaleDateString())) {
+                        chart[f].push(forecastData);
+                        if (forecastDataTime === '12:00:00 AM') {
+                            chart[f - 1].push(forecastData);
+                        }
+                    }
+                }
+            }
+
+            function populateForecastTabs(i, chart) {
+                let dateTime = [], temps = [], description = [], humidity = [], pressure = [], wind = [];
+                chart.forEach(function (data) {
+                    let forecastDataDate = new Date(data.dt * 1000);
+                    let forecastDataTime = forecastDataDate.toLocaleTimeString();
+                    dateTime.push(forecastDataTime);
+                    temps.push(Math.round(data.main.temp));
+                    description.push(data.weather[0].main);
+                    humidity.push(data.main.humidity);
+                    pressure.push(data.main.pressure);
+                    wind.push(data.wind.speed);
+                })
+                let tempsSorted = Array.from(temps).sort(function (a, b) {
+                    return a - b
+                });
+                $(`#day${i + 1}Header`).html(addDays(currentTime, 1).toLocaleDateString())
+                $(`.day${i + 1}Low`).html(Math.round(tempsSorted[0]));
+                $(`.day${i + 1}High`).html(Math.round(tempsSorted.reverse()[0]));
+                $(`#forecast${i + 1}-description`).html(capitalize(mode(description)));
+                $(`#forecast${i + 1}-humidity`).html(Math.round(average(humidity)));
+                $(`#forecast${i + 1}-pressure`).html(Math.round(average(pressure)));
+                $(`#forecast${i + 1}-wind`).html(Math.round(average(wind)));
+                $(`.day${i + 1}WeatherWrapBG`).attr('src', `../img/${(mode(description))}.jpg`)
+                createChart(`chart${i + 1}`, dateTime, temps);
+            }
+            for (let i = 0; i < 5; i++) {
+                populateForecastTabs(i, chart[i])
+            }
+        })
     }
 
     function searchBox(searchTerm) {
         geocode(searchTerm, MAPBOX_TOKEN).then(function (result) {
             map.setCenter(result);
-            map.setZoom(3);
             marker.setLngLat(result).addTo(map);
-            loadMapCurrent();
-            loadMapForecast();
+            loadMap();
         });
     }
 
     searchBox("dallas");
-
     $('#searchBox').click(function (e) {
         e.preventDefault();
         searchBox($('#searchBoxInput').val())
     })
-
 
     let marker = new mapboxgl.Marker({
         draggable: true
@@ -146,96 +175,9 @@ $(document).ready(function () {
     function add_marker(event) {
         let coordinates = event.lngLat;
         marker.setLngLat(coordinates).addTo(map);
-        loadMapCurrent();
-        loadMapForecast()
+        loadMap();
     }
 
     map.on('click', add_marker);
-    marker.on('dragend', loadMapCurrent);
-    marker.on('dragend', loadMapForecast);
-
-    function loadMapForecast() {
-        const lngLat = marker.getLngLat();
-        $.get("http://api.openweathermap.org/data/2.5/forecast", {
-            APPID: OPEN_WEATHER_APPID,
-            lat: lngLat.lat,
-            lon: lngLat.lng,
-            units: "imperial"
-        }).done(function (data) {
-            weatherForecast = data;
-            console.log(weatherForecast)
-
-            let chart = [[], [], [], [], [], []];
-
-
-            let currentTime = new Date(currentWeather.dt * 1000);
-            let currentDate = currentTime.toLocaleDateString();
-
-            weatherForecast.list.forEach(function (forecastData) {
-                let forecastDataDate = new Date(forecastData.dt * 1000);
-                let forecastDataDateOnly = forecastDataDate.toLocaleDateString();
-                let forecastDataTime = forecastDataDate.toLocaleTimeString();
-                if (currentDate === forecastDataDateOnly) {
-                    chart[0].push(forecastData);
-                    $('#day1Header').html('Today')
-                } else if (forecastDataDateOnly === (addDays(currentTime, 1).toLocaleDateString())) {
-                    chart[1].push(forecastData);
-                    $('#day2Header').html(addDays(currentTime, 1).toLocaleDateString())
-                    if (forecastDataTime === '12:00:00 AM') {
-                        chart[0].push(forecastData);
-                    }
-                } else if (forecastDataDateOnly === (addDays(currentTime, 2).toLocaleDateString())) {
-                    chart[2].push(forecastData);
-                    $('#day3Header').html(addDays(currentTime, 2).toLocaleDateString())
-                    if (forecastDataTime === '12:00:00 AM') {
-                        chart[1].push(forecastData);
-                    }
-                } else if (forecastDataDateOnly === (addDays(currentTime, 3).toLocaleDateString())) {
-                    chart[3].push(forecastData);
-                    $('#day4Header').html(addDays(currentTime, 3).toLocaleDateString())
-                    if (forecastDataTime === '12:00:00 AM') {
-                        chart[2].push(forecastData);
-                    }
-                } else if (forecastDataDateOnly === (addDays(currentTime, 4).toLocaleDateString())) {
-                    chart[4].push(forecastData);
-                    $('#day5Header').html(addDays(currentTime, 4).toLocaleDateString())
-                    if (forecastDataTime === '12:00:00 AM') {
-                        chart[3].push(forecastData);
-                    }
-                }
-            })
-
-            function populateForecastTabs(i, chart) {
-                let dateTime = [];
-                let temps = [];
-                let description = [];
-                let humidity = [];
-                let pressure = [];
-                let wind = [];
-                chart.forEach(function (data) {
-                    let forecastDataDate = new Date(data.dt * 1000);
-                    let forecastDataTime = forecastDataDate.toLocaleTimeString();
-                    dateTime.push(forecastDataTime);
-                    temps.push(Math.round(data.main.temp));
-                    description.push(data.weather[0].description);
-                    humidity.push(data.main.humidity);
-                    pressure.push(data.main.pressure);
-                    wind.push(data.wind.speed);
-                })
-                let tempsSorted = Array.from(temps).sort(function (a, b) {
-                    return a - b
-                });
-                $(`.day${i + 1}Low`).html(Math.round(tempsSorted[0]));
-                $(`.day${i + 1}High`).html(Math.round(tempsSorted.reverse()[0]));
-                $(`#forecast${i + 1}-description`).html(capitalize(mode(description)));
-                $(`#forecast${i + 1}-humidity`).html(Math.round(average(humidity)));
-                $(`#forecast${i + 1}-pressure`).html(Math.round(average(pressure)));
-                $(`#forecast${i + 1}-wind`).html(Math.round(average(wind)));
-                createChart(`chart${i + 1}`, dateTime, temps);
-            }
-            for (let i = 0; i < 5; i++) {
-                populateForecastTabs(i, chart[i])
-            }
-        })
-    }
+    marker.on('dragend', loadMap);
 })

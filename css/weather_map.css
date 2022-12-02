@@ -1,20 +1,15 @@
-#map {
-    /*width: 100%;*/
-    /*height: 100%;*/
-    background-size: cover;
-}
 
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #c1cee5;
-
 }
 
 header {
     background-color: #6c8bc2 !important;
 }
 
-main {
+.nav-tabs button {
+    color: black;
 }
 
 .nav-tabs {
@@ -29,10 +24,6 @@ main {
     border-bottom: none !important;
 }
 
-.currentWeatherWrap {
-    overflow: hidden;
-    position: relative;
-}
 .currentWeatherWrapBG {
     opacity: 0.3;
     position: absolute;
@@ -41,14 +32,12 @@ main {
     width: 100%;
     height: auto;
 }
-.currentWeatherContent {
-    position: relative;
-}
-.day1WeatherWrap {
+
+.weatherWrap {
     overflow: hidden;
     position: relative;
 }
-.day1WeatherWrapBG {
+.weatherWrapBG {
     opacity: 0.3;
     position: absolute;
     left: 0;
@@ -56,67 +45,7 @@ main {
     width: 100%;
     height: auto;
 }
-.day1WeatherContent {
-    position: relative;
-}
-.day2WeatherWrap {
-    overflow: hidden;
-    position: relative;
-}
-.day2WeatherWrapBG {
-    opacity: 0.3;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: auto;
-}
-.day2WeatherContent {
-    position: relative;
-}
-.day3WeatherWrap {
-    overflow: hidden;
-    position: relative;
-}
-.day3WeatherWrapBG {
-    opacity: 0.3;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: auto;
-}
-.day3WeatherContent {
-    position: relative;
-}
-.day4WeatherWrap {
-    overflow: hidden;
-    position: relative;
-}
-.day4WeatherWrapBG {
-    opacity: 0.3;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: auto;
-}
-.day4WeatherContent {
-    position: relative;
-}
-.day5WeatherWrap {
-    overflow: hidden;
-    position: relative;
-}
-.day5WeatherWrapBG {
-    opacity: 0.3;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: auto;
-}
-.day5WeatherContent {
+.weatherContent {
     position: relative;
 }
 
@@ -131,19 +60,3 @@ main {
 .font-size-med {
     font-size: 1.5rem;
 }
-
-.nav-tabs button {
-    color: black;
-}
-
-
-/*#currentWeatherIconImg {*/
-/*    width: 10rem;*/
-/*    height: 10rem;*/
-/*}*/
-
-/*.chart-container {*/
-/*    width: 50%;*/
-/*    height: 50%;*/
-/*    margin: auto;*/
-/*}*/
