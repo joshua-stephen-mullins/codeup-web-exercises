@@ -39,26 +39,26 @@ const users = [
 ];
 
 
-let usersLanguageFilter = users.filter(function(user){
+let usersLanguageFilter = users.filter(function (user) {
     return user.languages.length >= 3;
 })
 console.log(usersLanguageFilter)
 
-let emailAddresses = users.map(function(user){
+let emailAddresses = users.map(function (user) {
     return user.email;
 })
 console.log(emailAddresses)
 
 
-function averageExperience(array){
-let averageExperience = users.reduce(function(total, user){
-    return total + user.yearsOfExperience;
-}, 0);
-return averageExperience / users.length
+function averageExperience(array) {
+    let averageExperience = users.reduce(function (total, user) {
+        return total + user.yearsOfExperience;
+    }, 0);
+    return averageExperience / users.length
 }
 
 let longestEmailAddress = emailAddresses.reduce((email1, email2) => {
-    if (email1.length > email2.length){
+    if (email1.length > email2.length) {
         return email1
     } else {
         return email2
@@ -68,6 +68,7 @@ let longestEmailAddress = emailAddresses.reduce((email1, email2) => {
 console.log(longestEmailAddress);
 
 let instructors = users.reduce((beginning, user) => {
+    if (user )
     return beginning + user.name + ', '
 }, 'Your instructors are: ');
 console.log(instructors);
